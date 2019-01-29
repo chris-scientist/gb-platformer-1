@@ -21,4 +21,4 @@ Cette première version du jeu de plateforme vise à appréhender le genre, c'es
 
 * Idée originale de [MaxMax](https://gamebuino.com/fr/@Max)
 * Grasphismes signés [Jicehel](https://gamebuino.com/fr/@jicehel)
-* Implémenter par [chris-scientist](https://gamebuino.com/fr/@chris-scientist)
+* Implémenté par [chris-scientist](https://gamebuino.com/fr/@chris-scientist)
