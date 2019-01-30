@@ -1,8 +1,11 @@
 // author: chris-scientist
 // created at: 29/01/2019
+// updated at: 30/01/2019
 
 #ifndef PLATFORMER_CHARACTER
 #define PLATFORMER_CHARACTER
+
+#include "Constantes.h"
 
 struct Character {
   int x; // ............ position x
