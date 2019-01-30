@@ -89,7 +89,7 @@ void paintHero(Character &aCharacter) {
     
   }
   // debug
-  //gb.display.printf("%d,%d : %d", x, y, aCharacter.animation);
+  //gb.display.printf("%d,%d : %d", x, y, aCharacter.animation); // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 }
 
 // Dessiner toutes les plateformes

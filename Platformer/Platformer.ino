@@ -7,6 +7,7 @@
 #include "Constantes.h"
 #include "Commands.h"
 #include "Display.h"
+#include "PhysicsEngine.h"
 #include "Character.h"
 #include "Platform.h"
 
@@ -20,6 +21,10 @@ void setup() {
 
   initCharacter(hero);
   initPlatforms(setOfPlatforms);
+
+  // à effacer - forcer les coordonnées du personnage
+  hero.x = 60;
+  hero.y = 10;
 
   // à effacer
   gb.display.print("  Work in progress");
@@ -42,6 +47,9 @@ void loop() {
 
   gb.display.clear();
 
-  manageCommands(hero);
+  if( ! gravity(hero, setOfPlatforms) ) {
+    manageCommands(hero);
+  }
+  //gb.display.printf("(%d, %d)",hero.x, hero.y); // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
   paint(hero, setOfPlatforms);
 }
