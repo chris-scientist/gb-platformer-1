@@ -7,10 +7,14 @@
 
 #include <Gamebuino-Meta.h>
 
+#include "Constantes.h"
 #include "Character.h"
+#include "Platform.h"
 
-void paint(Character &aCharacter);
+void paint(Character &aCharacter, Platform * aSet);
 void paintBackground();
 void paintHero(Character &aCharacter);
+void paintPlatforms(Platform * aSet);
+void paintPlatform(Platform aPlatform);
 
 #endif

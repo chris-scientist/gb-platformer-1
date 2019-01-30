@@ -10,12 +10,13 @@ Cette première version du jeu de plateforme vise à appréhender le genre, c'es
 * Affichage de l'image de fond
 * Affichage du personnage (avec animation)
 * Déplacement (gauche, droite) du personnage
+* Affichage des plateformes
 
 ### À implémenter
 
 * Gestion du saut du personnage
-* Affichage de la plateforme
 * Gestion de la physique : Personnage - Plateforme
+* Interractions dans l'univers avec les objets
 
 ## Crédits
 
