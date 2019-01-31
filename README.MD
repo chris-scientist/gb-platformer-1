@@ -16,10 +16,15 @@ Cette première version du jeu de plateforme vise à appréhender le genre, c'es
 ### À implémenter
 
 * Gestion du saut du personnage
-* Interractions dans l'univers avec les objets
+* Interactions dans l'univers avec les objets
+* Gestion du temps
+* Gérer le high score
+* Gestion de la partie
+* Gestion multilingue
+* Corriger le déplacement du personnage
 
 ## Crédits
 
 * Idée originale de [MaxMax](https://gamebuino.com/fr/@Max)
-* Graphismes signés [Jicehel](https://gamebuino.com/fr/@jicehel)
+* Graphismes signés [Jicehel](https://gamebuino.com/fr/@jicehel) et [MaxMax](https://gamebuino.com/fr/@Max)
 * Implémenté par [chris-scientist](https://gamebuino.com/fr/@chris-scientist)
