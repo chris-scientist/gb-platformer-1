@@ -13,7 +13,7 @@ void manageCommands(Character &aCharacter) {
       isMove = true;
     }
   } else if(gb.buttons.pressed(BUTTON_RIGHT)) {
-    if(aCharacter.x < (80-UNDER_CENTER_X_HERO)) {
+    if(aCharacter.x < (80 - UNDER_CENTER_X_HERO)) {
       aCharacter.x++;
       aCharacter.toTheLeft = false;
       isMove = true;

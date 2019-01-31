@@ -21,10 +21,10 @@ void setup() {
 
   initCharacter(hero);
   initPlatforms(setOfPlatforms);
-
+  
   // à effacer - forcer les coordonnées du personnage
-  hero.x = 60;
-  hero.y = 10;
+  hero.x = 40;
+  hero.y = 5;
 
   // à effacer
   gb.display.print("  Work in progress");
@@ -50,6 +50,8 @@ void loop() {
   if( ! gravity(hero, setOfPlatforms) ) {
     manageCommands(hero);
   }
-  //gb.display.printf("(%d, %d)",hero.x, hero.y); // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
   paint(hero, setOfPlatforms);
+  /*gb.display.setColor(BLACK);
+  gb.display.printf("(%d, %d)",hero.x, hero.y); // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+  delay(500);*/
 }

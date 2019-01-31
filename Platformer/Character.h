@@ -8,10 +8,10 @@
 #include "Constantes.h"
 
 struct Character {
-  int x; // ............ position x
-  int y; // ............ position y
-  bool toTheLeft; // ... true si le personnage va vers la gauche, false sinon
-  int animation; // .... pour animer le personnage
+  int x; // ........................... position x
+  int y; // ........................... position y
+  bool toTheLeft; // .................. true si le personnage va vers la gauche, false sinon
+  int animation; // ................... pour animer le personnage
 };
 
 void initCharacter(Character &aCharacter);

@@ -11,7 +11,6 @@
 #include "Platform.h"
 
 bool gravity(Character &aCharacter, Platform * aSet);
-bool isOnTheGround(Character aCharacter);
 bool isOnOnePlatform(Character aCharacter, Platform * aSet);
 bool isOnThePlatform(Character aCharacter, Platform aPlatform);
 

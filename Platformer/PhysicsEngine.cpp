@@ -1,5 +1,6 @@
 // author: chris-scientist
 // created at: 30/01/2019
+// updated at: 31/01/2019
 
 #include "PhysicsEngine.h"
 
@@ -7,20 +8,12 @@
 bool gravity(Character &aCharacter, Platform * aSet) {
   bool isFall = false;
   
-  if( ! isOnTheGround(aCharacter) && ! isOnOnePlatform(aCharacter, aSet) ) {
-    //gb.display.println("CHUTE !"); // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+  if(! isOnOnePlatform(aCharacter, aSet) ) {
     aCharacter.y += GRAVITY;
-    //gb.display.printf("G.y %d ", aCharacter.y); // <<<<<<<<<<<<<<<<<<<<<<<<<<<
     isFall = true;
   }
 
   return isFall;
-}
-
-bool isOnTheGround(Character aCharacter) {
-  /*gb.display.printf("%d", aCharacter.y); // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-  gb.display.println("");*/
-  return ( (aCharacter.y + UNDER_CENTER_Y_HERO) >= 64 );
 }
 
 bool isOnOnePlatform(Character aCharacter, Platform * aSet) {
@@ -35,8 +28,27 @@ bool isOnOnePlatform(Character aCharacter, Platform * aSet) {
 bool isOnThePlatform(Character aCharacter, Platform aPlatform) {
   int xCharacter = aCharacter.x - OVER_CENTER_X_HERO;
   int yCharacter = aCharacter.y - OVER_CENTER_Y_HERO;
+  
+  // calcul selon le type de plateforme
   int xPlatform = aPlatform.x - OVER_CENTER_X_PLATFORM;
   int yPlatform = aPlatform.y - OVER_CENTER_Y_PLATFORM;
+  int widthPlatform = WIDTH_PLATFORM;
+  int heightPlatform = HEIGHT_PLATFORM;
+  if(aPlatform.type == 1) {
+    xPlatform = aPlatform.x - OVER_CENTER_X_GROUND;
+    yPlatform = aPlatform.y - OVER_CENTER_Y_GROUND;
+    widthPlatform = WIDTH_GROUND;
+    heightPlatform = HEIGHT_PLATFORM;
+  } else if(aPlatform.type == 2) {
+    xPlatform = aPlatform.x - OVER_CENTER_X_HILL;
+    yPlatform = aPlatform.y - OVER_CENTER_Y_HILL;
+    widthPlatform = WIDTH_HILL;
+    heightPlatform = HEIGHT_HILL;
+  }
+
+  if( gb.collideRectRect(xCharacter, yCharacter, WIDTH_HERO, HEIGHT_HERO, xPlatform, yPlatform - 1, widthPlatform * aPlatform.lengthPlatform, heightPlatform) ) {
+    return (aCharacter.y + UNDER_CENTER_Y_HERO) == yPlatform;
+  }
   
-  return gb.collideRectRect(xCharacter, yCharacter, WIDTH_HERO, HEIGHT_HERO, xPlatform, yPlatform, WIDTH_PLATFORM * aPlatform.lengthPlatform, HEIGHT_PLATFORM);
+  return false;
 }
