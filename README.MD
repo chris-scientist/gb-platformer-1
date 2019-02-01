@@ -21,7 +21,7 @@ Cette première version du jeu de plateforme vise à appréhender le genre, c'es
 * Gérer le high score
 * Gestion de la partie
 * Gestion multilingue
-* Corriger le déplacement du personnage
+* ~~Corriger le déplacement du personnage~~
 
 ## Crédits
 
