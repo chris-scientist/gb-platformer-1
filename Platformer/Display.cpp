@@ -1,6 +1,6 @@
 // author: chris-scientist
 // created at: 29/01/2019
-// updated at: 31/01/2019
+// updated at: 01/02/2019
 
 #include "Display.h"
 
@@ -107,7 +107,7 @@ void paintHero(Character &aCharacter) {
   if(aCharacter.toTheLeft) {
     // le personnage se déplace vers la gauche
 
-    if(aCharacter.animation % 2 == 0) {
+    if(aCharacter.animation < INDEX_FOR_CHANGE_ANIMATION_HERO) {
       gb.display.drawImage(x, y, heroG1);
     } else {
       gb.display.drawImage(x, y, heroG2);
@@ -116,7 +116,7 @@ void paintHero(Character &aCharacter) {
   } else {
     // le personnage se déplace vers la droite
 
-    if(aCharacter.animation % 2 == 0) {
+    if(aCharacter.animation < INDEX_FOR_CHANGE_ANIMATION_HERO) {
       gb.display.drawImage(x, y, heroD1);
     } else {
       gb.display.drawImage(x, y, heroD2);

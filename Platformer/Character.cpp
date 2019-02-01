@@ -13,5 +13,5 @@ void initCharacter(Character &aCharacter) {
   aCharacter.toTheLeft = false;
   
   // On initialise l'animation
-  aCharacter.animation = 1;
+  aCharacter.animation = MIN_INDEX_ANIMATION_HERO;
 }

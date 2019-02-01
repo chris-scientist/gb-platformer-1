@@ -1,12 +1,17 @@
 // author: chris-scientist
 // created at: 30/01/2019
-// updated at: 31/01/2019
+// updated at: 01/02/2019
 
 #ifndef PLATFORMER_CONSTANTES
 #define PLATFORMER_CONSTANTES
 
 // Nombre de plateformes
 const int NB_OF_PLATFORMS = 4;
+
+// Pour paramétrer l'animation du personnage
+const int MIN_INDEX_ANIMATION_HERO = 0;
+const int MAX_INDEX_ANIMATION_HERO = 4;
+const int INDEX_FOR_CHANGE_ANIMATION_HERO = 2;
 
 // Pour un personnage de 13 pixels de haut sur 8 pixels de large
 const int WIDTH_HERO = 8;
