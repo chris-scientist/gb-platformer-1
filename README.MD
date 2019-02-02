@@ -12,19 +12,20 @@ Cette première version du jeu de plateforme vise à appréhender le genre, c'es
 * Déplacement (gauche, droite) du personnage
 * Affichage des plateformes
 * Gestion de la physique : Personnage - Plateforme / Sol, gravité
+* Gestion du saut du personnage
 
 ### À implémenter
 
-* Gestion du saut du personnage
 * Interactions dans l'univers avec les objets
 * Gestion du temps
 * Gérer le high score
 * Gestion de la partie
 * Gestion multilingue
-* ~~Corriger le déplacement du personnage~~
 
 ## Crédits
 
 * Idée originale de [MaxMax](https://gamebuino.com/fr/@Max)
 * Graphismes signés [Jicehel](https://gamebuino.com/fr/@jicehel) et [MaxMax](https://gamebuino.com/fr/@Max)
 * Implémenté par [chris-scientist](https://gamebuino.com/fr/@chris-scientist)
+
+Nos remerciements pour [Steph](https://gamebuino.com/fr/@steph) et [Sylvain](https://gamebuino.com/fr/@sylvain) pour leur soutien et leurs conseils.
