@@ -1,6 +1,6 @@
 // author: chris-scientist
 // created at: 29/01/2019
-// updated at: 01/02/2019
+// updated at: 02/02/2019
 
 #include "Commands.h"
 
@@ -18,6 +18,8 @@ void manageCommands(Character &aCharacter) {
       aCharacter.toTheLeft = false;
       isMove = true;
     }
+  } else if(gb.buttons.pressed(BUTTON_UP) && aCharacter.state != JUMP_STATE) {
+    aCharacter.state = PUSH_FOR_JUMP_STATE;
   }
 
   if(isMove) {

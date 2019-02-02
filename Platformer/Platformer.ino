@@ -1,6 +1,6 @@
 // author: chris-scientist
 // created at: 29/01/2019
-// updated at: 30/01/2019
+// updated at: 02/01/2019
 
 #include <Gamebuino-Meta.h>
 
@@ -25,6 +25,7 @@ void setup() {
   // à effacer - forcer les coordonnées du personnage
   hero.x = 40;
   hero.y = 5;
+  hero.state = FREE_FALL_STATE;
 
   // à effacer
   gb.display.print("  Work in progress");
@@ -47,9 +48,16 @@ void loop() {
 
   gb.display.clear();
 
-  if( ! gravity(hero, setOfPlatforms) ) {
+  if(hero.state != JUMP_STATE && hero.state != PUSH_FOR_JUMP_STATE) {
+    gravity(hero, setOfPlatforms);
+  } else if(hero.state == JUMP_STATE || hero.state == PUSH_FOR_JUMP_STATE) {
+    jump(hero, setOfPlatforms);
+  }
+  
+  if(hero.state == ON_THE_PLATFORM_STATE) {
     manageCommands(hero);
   }
+
   paint(hero, setOfPlatforms);
   /*gb.display.setColor(BLACK);
   gb.display.printf("(%d, %d)",hero.x, hero.y); // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<

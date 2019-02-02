@@ -9,6 +9,7 @@
 
 #include "Constantes.h"
 #include "Character.h"
+#include "PhysicsEngine.h"
 
 void manageCommands(Character &aCharacter);
 

@@ -1,6 +1,6 @@
 // author: chris-scientist
 // created at: 29/01/2019
-// updated at: 31/01/2019
+// updated at: 01/02/2019
 
 #include "Character.h"
 
@@ -14,4 +14,10 @@ void initCharacter(Character &aCharacter) {
   
   // On initialise l'animation
   aCharacter.animation = MIN_INDEX_ANIMATION_HERO;
+
+  // On initialise la vitesse verticale
+  aCharacter.vy = INIT_VERTICAL_VELOCITY;
+
+  // par défaut, le joueur est dans un état "normal" c'est-à-dire sur le sol
+  aCharacter.state = ON_THE_PLATFORM_STATE;
 }
