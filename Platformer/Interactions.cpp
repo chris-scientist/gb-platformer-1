@@ -11,7 +11,7 @@ void interactionsWithWorld(Character &aCharacter, Object * aSetOfObjects) {
   }
 }
 
-const int isContactWithObject(Character aCharacter, Object * aSetOfObjects) {
+const int isContactWithObject(Character &aCharacter, Object * aSetOfObjects) {
   for(int i = 0 ; i < NB_OF_OBJECTS ; i++) {
     const int anObject = isContactWithObject(aCharacter, aSetOfObjects[i]);
     switch(anObject) {
@@ -22,6 +22,7 @@ const int isContactWithObject(Character aCharacter, Object * aSetOfObjects) {
       case DOOR_OBJECT:
         if(aCharacter.haveKey) {
           aSetOfObjects[i].state = DOOR_BTW_OPEN;
+          aCharacter.haveKey = false;
         }
         return anObject;
       break;

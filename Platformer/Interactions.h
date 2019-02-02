@@ -11,7 +11,7 @@
 #include "Object.h"
 
 void interactionsWithWorld(Character &aCharacter, Object * aSetOfObjects);
-const int isContactWithObject(Character aCharacter, Object * aSetOfObjects);
+const int isContactWithObject(Character &aCharacter, Object * aSetOfObjects);
 const int isContactWithObject(Character aCharacter, Object anObject);
 
 #endif
