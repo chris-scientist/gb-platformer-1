@@ -5,11 +5,18 @@
 #ifndef PLATFORMER_CONSTANTES
 #define PLATFORMER_CONSTANTES
 
+// Etat du jeu
+const int HOME_STATE = 0;
+const int PLAY_STATE = 1;
+
 // Largeur de l'écran
 const int WIDTH_SCREEN = 80;
 
 // Nombre de plateformes
 const int NB_OF_PLATFORMS = 4;
+
+// Nombre d'objets
+const int NB_OF_OBJECTS = 2;
 
 // Pour paramétrer l'animation du personnage
 const int MIN_INDEX_ANIMATION_HERO = 0;
@@ -47,6 +54,32 @@ const int HEIGHT_HILL = 16;
 const int WIDTH_HILL = 8;
 const int OVER_CENTER_X_HILL = 4;
 const int OVER_CENTER_Y_HILL = 8;
+
+// Pour une clé de 7 pixels de haut sur 10 pixels de large
+const int HEIGHT_KEY = 7;
+const int WIDTH_KEY = 10;
+const int OVER_CENTER_X_KEY = 5;
+const int OVER_CENTER_Y_KEY = 4;
+
+// Pour une porte de 12 pixels de haut sur 10 pxels de large
+const int HEIGHT_DOOR = 12;
+const int WIDTH_DOOR = 10;
+const int OVER_CENTER_X_DOOR = 5;
+const int OVER_CENTER_Y_DOOR = 6;
+
+// Type d'objet
+const int NO_OBJECT = 0;
+const int KEY_OBJECT = 1;
+const int DOOR_OBJECT = 2;
+
+// Etat clé
+const int KEY_ON_THE_PLATFORM = 0;
+const int KEY_COLLECTED = 1;
+
+// Etat porte
+const int DOOR_CLOSED = 0;
+const int DOOR_BTW_OPEN = 1;
+const int DOOR_OPEN = 2;
 
 // Gravité
 const int GRAVITY = 1;

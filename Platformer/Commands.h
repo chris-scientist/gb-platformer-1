@@ -11,6 +11,7 @@
 #include "Character.h"
 #include "PhysicsEngine.h"
 
-void manageCommands(Character &aCharacter);
+const int manageCommandsForHome();
+const int manageCommands(Character &aCharacter);
 
 #endif

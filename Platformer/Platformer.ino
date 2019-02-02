@@ -1,6 +1,6 @@
 // author: chris-scientist
 // created at: 29/01/2019
-// updated at: 02/01/2019
+// updated at: 02/02/2019
 
 #include <Gamebuino-Meta.h>
 
@@ -8,29 +8,28 @@
 #include "Commands.h"
 #include "Display.h"
 #include "PhysicsEngine.h"
+#include "Interactions.h"
 #include "Character.h"
 #include "Platform.h"
+#include "Object.h"
 
 // Création du personnage
 Character hero;
 Platform setOfPlatforms[NB_OF_PLATFORMS];
+Object setOfObjects[NB_OF_OBJECTS];
+int stateOfGame = HOME_STATE;
 
 void setup() {
   // initialiser la gamebuino
   gb.begin();
 
-  initCharacter(hero);
   initPlatforms(setOfPlatforms);
   
   // à effacer - forcer les coordonnées du personnage
-  hero.x = 40;
+  /*hero.x = 40;
   hero.y = 5;
-  hero.state = FREE_FALL_STATE;
+  hero.state = FREE_FALL_STATE;*/
 
-  // à effacer
-  gb.display.print("  Work in progress");
-  delay(5000);
-  
   /*
   // debug
   gb.display.clear();
@@ -48,18 +47,31 @@ void loop() {
 
   gb.display.clear();
 
-  if(hero.state != JUMP_STATE && hero.state != PUSH_FOR_JUMP_STATE) {
-    gravity(hero, setOfPlatforms);
-  } else if(hero.state == JUMP_STATE || hero.state == PUSH_FOR_JUMP_STATE) {
-    jump(hero, setOfPlatforms);
-  }
-  
-  if(hero.state == ON_THE_PLATFORM_STATE) {
-    manageCommands(hero);
-  }
+  if(stateOfGame == HOME_STATE) {
+    // Ecran d'accueil
+    
+    paintHomeScreen();
+    initCharacter(hero); // ......... on réinitialise la position du personnage
+    initObjects(setOfObjects); // ... on réinitialise les objets
+    stateOfGame = manageCommandsForHome();
+  } else {
+    // Partie en cours...
+    
+    if(hero.state != JUMP_STATE && hero.state != PUSH_FOR_JUMP_STATE) {
+      gravity(hero, setOfPlatforms);
+    } else if(hero.state == JUMP_STATE || hero.state == PUSH_FOR_JUMP_STATE) {
+      jump(hero, setOfPlatforms);
+    }
+    
+    if(hero.state == ON_THE_PLATFORM_STATE) {
+      stateOfGame = manageCommands(hero);
+    }
 
-  paint(hero, setOfPlatforms);
-  /*gb.display.setColor(BLACK);
-  gb.display.printf("(%d, %d)",hero.x, hero.y); // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-  delay(500);*/
+    interactionsWithWorld(hero, setOfObjects);
+
+    paint(hero, setOfPlatforms, setOfObjects);
+    /*gb.display.setColor(BLACK);
+    gb.display.printf("(%d, %d)",hero.x, hero.y); // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    delay(500);*/
+  }
 }

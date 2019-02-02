@@ -4,7 +4,14 @@
 
 #include "Commands.h"
 
-void manageCommands(Character &aCharacter) {
+const int manageCommandsForHome() {
+  if(gb.buttons.pressed(BUTTON_A)) {
+    return PLAY_STATE;
+  }
+  return HOME_STATE;
+}
+
+const int manageCommands(Character &aCharacter) {
   bool isMove = false;
   if(gb.buttons.repeat(BUTTON_LEFT, 1)) {
     if(aCharacter.x > OVER_CENTER_X_HERO) {
@@ -20,6 +27,8 @@ void manageCommands(Character &aCharacter) {
     }
   } else if(gb.buttons.pressed(BUTTON_UP) && aCharacter.state != JUMP_STATE) {
     aCharacter.state = PUSH_FOR_JUMP_STATE;
+  } else if(gb.buttons.pressed(BUTTON_MENU)) {
+    return HOME_STATE;
   }
 
   if(isMove) {
@@ -29,4 +38,6 @@ void manageCommands(Character &aCharacter) {
       aCharacter.animation++;
     }
   }
+  
+  return PLAY_STATE;
 }
