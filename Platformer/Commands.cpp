@@ -30,9 +30,11 @@ const int manageCommands(Character &aCharacter) {
     }
   }
 
-  if(gb.buttons.pressed(BUTTON_UP) && aCharacter.state != JUMP_STATE) {
+  if(gb.buttons.pressed(BUTTON_A) && aCharacter.state != JUMP_STATE) {
     aCharacter.state = PUSH_FOR_JUMP_STATE;
-  } else if(gb.buttons.pressed(BUTTON_MENU)) {
+  }
+
+  if(gb.buttons.pressed(BUTTON_MENU)) {
     return HOME_STATE;
   }
 
