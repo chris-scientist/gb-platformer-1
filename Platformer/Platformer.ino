@@ -1,6 +1,6 @@
 // author: chris-scientist
 // created at: 29/01/2019
-// updated at: 02/02/2019
+// updated at: 03/02/2019
 
 #include <Gamebuino-Meta.h>
 
@@ -24,11 +24,6 @@ void setup() {
   gb.begin();
 
   initPlatforms(setOfPlatforms);
-  
-  // à effacer - forcer les coordonnées du personnage
-  /*hero.x = 40;
-  hero.y = 5;
-  hero.state = FREE_FALL_STATE;*/
 
   /*
   // debug
@@ -56,6 +51,10 @@ void loop() {
     stateOfGame = manageCommandsForHome();
   } else {
     // Partie en cours...
+
+    if(hero.state == ON_THE_PLATFORM_STATE) {
+      stateOfGame = manageCommands(hero);
+    }
     
     if(hero.state != JUMP_STATE && hero.state != PUSH_FOR_JUMP_STATE) {
       gravity(hero, setOfPlatforms);
@@ -63,10 +62,6 @@ void loop() {
       jump(hero, setOfPlatforms);
     }
     
-    if(hero.state == ON_THE_PLATFORM_STATE) {
-      stateOfGame = manageCommands(hero);
-    }
-
     interactionsWithWorld(hero, setOfObjects);
 
     paint(hero, setOfPlatforms, setOfObjects);

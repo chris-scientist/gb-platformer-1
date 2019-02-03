@@ -1,14 +1,25 @@
 // author: chris-scientist
 // created at: 30/01/2019
-// updated at: 31/01/2019
+// updated at: 03/02/2019
 
 #include "Platform.h"
 
 void initPlatforms(Platform * aSet) {
-  aSet[0] = createPlatform(4, 59, 10, 1);
-  aSet[1] = createPlatform(4, 46, 3, 2);
-  aSet[2] = createPlatform(60, 46, 3, 2);
-  aSet[3] = createPlatform(24, 20, 5, 3);
+  #if ! DEBUG_PLATFORMER // Mode debug inactif ===========================================
+  
+  aSet[0] = createPlatform(4, 59, 10, GROUND_TYPE);
+  aSet[1] = createPlatform(4, 46, 3, HILL_TYPE);
+  aSet[2] = createPlatform(60, 46, 3, HILL_TYPE);
+  aSet[3] = createPlatform(24, 20, 5, PLATFORM_TYPE);
+
+  #else // Mode debug actif ==============================================================
+
+  aSet[0] = createPlatform(4, 59, 10, GROUND_TYPE);
+  aSet[1] = createPlatform(4, 47, 3, PLATFORM_TYPE);
+  aSet[2] = createPlatform(35, 37, 3, PLATFORM_TYPE);
+  aSet[3] = createPlatform(68, 27, 2, PLATFORM_TYPE);
+
+  #endif
 }
 
 Platform createPlatform(int aX, int aY, int aLength, int aType) {

@@ -1,6 +1,6 @@
 // author: chris-scientist
 // created at: 29/01/2019
-// updated at: 02/02/2019
+// updated at: 03/02/2019
 
 #ifndef PLATFORMER_DISPLAY
 #define PLATFORMER_DISPLAY
@@ -25,5 +25,9 @@ void paintObjects(Object * aSet);
 void paintObject(Object anObject);
 void paintKey(const int aX, const int aY, const int aState);
 void paintDoor(const int aX, const int aY, const int aState);
+
+#if DEBUG_PLATFORMER
+void paintBox(const int aX, const int aY, const int aWidth, const int aHeight, const Color aColor);
+#endif
 
 #endif

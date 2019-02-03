@@ -1,6 +1,6 @@
 // author: chris-scientist
 // created at: 29/01/2019
-// updated at: 02/02/2019
+// updated at: 03/02/2019
 
 #include "Display.h"
 
@@ -140,7 +140,9 @@ void paintHomeScreen() {
 
 // Dessiner le jeu
 void paint(Character &aCharacter, Platform * aSet, Object * aSetOfObjects) {
+  #if ! DEBUG_PLATFORMER
   paintBackground();
+  #endif
   paintPlatforms(aSet);
   paintObjects(aSetOfObjects);
   paintHero(aCharacter);
@@ -155,6 +157,9 @@ void paintBackground() {
 void paintHero(Character &aCharacter) {
   int x = aCharacter.x - OVER_CENTER_X_HERO;
   int y = aCharacter.y - OVER_CENTER_Y_HERO;
+  
+  #if ! DEBUG_PLATFORMER // Mode debug inactif ===========================================
+  
   if(aCharacter.haveKey) {
     if(aCharacter.toTheLeft) {
       // le personnage se déplace vers la gauche
@@ -198,6 +203,12 @@ void paintHero(Character &aCharacter) {
   }
   // debug
   //gb.display.printf("%d,%d : %d", x, y, aCharacter.animation); // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+  
+  #else // Mode debug actif ==============================================================
+
+  paintBox(x, y, WIDTH_HERO, HEIGHT_HERO, aCharacter.haveKey ? color4HeroWithKey : (aCharacter.toTheLeft ? color4HeroL : color4HeroR) );
+
+  #endif
 }
 
 // Dessiner toutes les plateformes
@@ -211,10 +222,10 @@ void paintPlatforms(Platform * aSet) {
 void paintPlatform(Platform aPlatform) {
   int x = aPlatform.x - OVER_CENTER_X_PLATFORM;
   int y = aPlatform.y - OVER_CENTER_Y_PLATFORM;
-  if(aPlatform.type == 1) {
+  if(aPlatform.type == GROUND_TYPE) {
     x = aPlatform.x - OVER_CENTER_X_GROUND;
     y = aPlatform.y - OVER_CENTER_Y_GROUND;
-  } else if(aPlatform.type == 2) {
+  } else if(aPlatform.type == HILL_TYPE) {
     x = aPlatform.x - OVER_CENTER_X_HILL;
     y = aPlatform.y - OVER_CENTER_Y_HILL;
   }
@@ -222,11 +233,11 @@ void paintPlatform(Platform aPlatform) {
   for(int i = 0 ; i < aPlatform.lengthPlatform ; i++) {
 
     switch(aPlatform.type) {
-      case 1: // on dessine le sol
+      case GROUND_TYPE: // on dessine le sol
         paintGround(x, y);
         x += WIDTH_GROUND;
       break;
-      case 2: // on dessine la colline
+      case HILL_TYPE: // on dessine la colline
         paintHill(i, aPlatform.lengthPlatform, x, y);
         x += WIDTH_HILL;
       break;
@@ -241,6 +252,8 @@ void paintPlatform(Platform aPlatform) {
 
 // Dessiner une plateforme flottante
 void paintPlatform(const int anIndex, const int aNbBlocks, const int aX, const int aY) {
+  #if ! DEBUG_PLATFORMER // Mode debug inactif ===========================================
+  
   if(anIndex == 0) {
     // si c'est le début de la plateforme
     // alors on dessine une plateforme droite
@@ -253,6 +266,11 @@ void paintPlatform(const int anIndex, const int aNbBlocks, const int aX, const i
     // sinon on dessine une plateforme centrale
     gb.display.drawImage(aX, aY, platformMiddle);
   }
+  #else // Mode debug actif ==============================================================
+
+  paintBox(aX, aY, WIDTH_PLATFORM, HEIGHT_PLATFORM, color4Platform);
+
+  #endif
 }
 
 void paintHill(const int anIndex, const int aNbBlocks, const int aX, const int aY) {
@@ -280,7 +298,11 @@ void paintGround(const int aX, const int aY) {
     default:
       gb.display.drawImage(aX, aY, ground1);
   }*/
+  #if ! DEBUG_PLATFORMER // Mode debug inactif ===========================================
   gb.display.drawImage(aX, aY, ground1);
+  #else // Mode debug actif ==============================================================
+  paintBox(aX, aY, WIDTH_GROUND, HEIGHT_GROUND, color4Ground);
+  #endif
 }
 
 void paintObjects(Object * aSet) {
@@ -305,13 +327,18 @@ void paintObject(Object anObject) {
 
 void paintKey(const int aX, const int aY, const int aState) {
   if(aState == KEY_ON_THE_PLATFORM) {
+    #if ! DEBUG_PLATFORMER // Mode debug inactif =========================================
     gb.display.drawImage(aX - OVER_CENTER_X_KEY, aY - OVER_CENTER_Y_KEY, key);
+    #else
+    paintBox(aX - OVER_CENTER_X_KEY, aY - OVER_CENTER_Y_KEY, WIDTH_KEY, HEIGHT_KEY, color4Key);
+    #endif
   }
 }
 
 void paintDoor(const int aX, const int aY, const int aState) {
   const int x = aX - OVER_CENTER_X_DOOR;
   const int y = aY - OVER_CENTER_Y_DOOR;
+  #if ! DEBUG_PLATFORMER // Mode debug inactif ==========================================
   switch(aState) {
     case DOOR_BTW_OPEN:
       gb.display.drawImage(x, y, doorBtwOpen);
@@ -322,4 +349,14 @@ void paintDoor(const int aX, const int aY, const int aState) {
     default:
       gb.display.drawImage(x, y, doorClosed);
   }
+  #else // Mode debug actif =============================================================
+  paintBox(x, y, WIDTH_DOOR, HEIGHT_DOOR, (aState == DOOR_BTW_OPEN ? color4DoorOpen : color4DoorClosed));
+  #endif
 }
+
+#if DEBUG_PLATFORMER
+void paintBox(const int aX, const int aY, const int aWidth, const int aHeight, const Color aColor) {
+  gb.display.setColor(aColor);
+  gb.display.fillRect(aX, aY, aWidth, aHeight);
+}
+#endif
