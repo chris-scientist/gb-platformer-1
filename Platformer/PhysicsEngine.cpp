@@ -14,6 +14,7 @@ void jump(Character &aCharacter, Platform * aSet) {
     aCharacter.state = JUMP_STATE;
 
     // le personnage saute
+    aCharacter.oldY = aCharacter.y;
     aCharacter.vy += GRAVITY;
     aCharacter.x += aCharacter.vx;
     aCharacter.y += aCharacter.vy;
@@ -41,6 +42,7 @@ void jump(Character &aCharacter, Platform * aSet) {
     aCharacter.state = FREE_FALL_STATE;
   } else {
     // le personnage saute
+    aCharacter.oldY = aCharacter.y;
     aCharacter.vy += GRAVITY;
     aCharacter.x += aCharacter.vx;
     aCharacter.y += aCharacter.vy;
@@ -95,9 +97,13 @@ const int isOnThePlatform(Character aCharacter, Platform aPlatform) {
     heightPlatform = HEIGHT_HILL;
   }
 
-  // Selon que l'on saute ou non, le premier test de collision n'est pas le même
-  if( (aCharacter.state != JUMP_STATE) ? ( (aCharacter.y + UNDER_CENTER_Y_HERO) == yPlatform ) : ( (aCharacter.y + UNDER_CENTER_Y_HERO) >= yPlatform ) ) {
-    return gb.collideRectRect(xCharacter, yCharacter, WIDTH_HERO, HEIGHT_HERO, xPlatform, yPlatform - 1, widthPlatform * aPlatform.lengthPlatform, heightPlatform) ? aPlatform.type : NO_PLATFORM_TYPE;
+  if(aCharacter.state == JUMP_STATE && !isFall(aCharacter) && aPlatform.isGoThrough) {
+    return NO_PLATFORM_TYPE;
+  } else {
+    // Selon que l'on saute ou non, le premier test de collision n'est pas le même
+    if( (aCharacter.state != JUMP_STATE) ? ( (aCharacter.y + UNDER_CENTER_Y_HERO) == yPlatform ) : ( (aCharacter.y + UNDER_CENTER_Y_HERO) >= yPlatform ) ) {
+      return gb.collideRectRect(xCharacter, yCharacter, WIDTH_HERO, HEIGHT_HERO, xPlatform, yPlatform - 1, widthPlatform * aPlatform.lengthPlatform, heightPlatform) ? aPlatform.type : NO_PLATFORM_TYPE;
+    }
   }
   
   return NO_PLATFORM_TYPE;

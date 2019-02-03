@@ -10,6 +10,7 @@
 struct Character {
   int x; // ........................... position x
   int y; // ........................... position y
+  int oldY; // ........................ position y au dernier rafraîchissement
   int vx; // .......................... accélération horizontale
   int vy; // .......................... accélération verticale
   bool toTheLeft; // .................. true si le personnage va vers la gauche, false sinon
@@ -19,5 +20,6 @@ struct Character {
 };
 
 void initCharacter(Character &aCharacter);
+bool isFall(Character aCharacter);
 
 #endif

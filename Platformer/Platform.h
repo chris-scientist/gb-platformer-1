@@ -12,9 +12,10 @@ struct Platform {
   int y; // ........................... position y de la plateforme (centre de la plateforme)
   int lengthPlatform; // .............. longueur de la plateforme en bloc (doit être au minimum égale à 2), un bloc fait 5 pixels sur 5
   int type; // ........................ type de plateforme : voir constantes
+  bool isGoThrough; // ................ true pour indiquer que le joueur peu passer à travers la plateforme, sinon false
 };
 
 void initPlatforms(Platform * aSet);
-Platform createPlatform(int aX, int aY, int aLength, int aType);
+Platform createPlatform(int aX, int aY, int aLength, int aType, bool goThrough);
 
 #endif

@@ -8,6 +8,7 @@ void initCharacter(Character &aCharacter) {
   // On force la position initiale du héro  au milieu de l'écran et plaqué au sol
   aCharacter.x = 40;
   aCharacter.y = 64 - (UNDER_CENTER_Y_HERO + HEIGHT_GROUND);
+  aCharacter.oldY = aCharacter.y;
 
   // On lui d'y d'aller vers la droite par défaut
   aCharacter.toTheLeft = false;
@@ -26,6 +27,13 @@ void initCharacter(Character &aCharacter) {
   
   #if DEBUG_PLATFORMER // Mode debug actif ===============================================
   aCharacter.x = 40;
-  aCharacter.y = 52;
+  aCharacter.y = 53;
+  //aCharacter.x = 6;
+  //aCharacter.state = PUSH_FOR_JUMP_STATE;
+  aCharacter.oldY = aCharacter.y;
   #endif
+}
+
+bool isFall(Character aCharacter) {
+  return (aCharacter.oldY - aCharacter.y) < 0;
 }
