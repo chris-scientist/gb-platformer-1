@@ -1,6 +1,6 @@
 // author: chris-scientist
 // created at: 30/01/2019
-// updated at: 03/02/2019
+// updated at: 04/02/2019
 
 #ifndef PLATFORMER_CONSTANTES
 #define PLATFORMER_CONSTANTES
@@ -29,6 +29,13 @@ const int NB_OF_PLATFORMS = 4;
 
 // Nombre d'objets
 const int NB_OF_OBJECTS = 2;
+
+// Identifiants des plateformes
+const int NO_ID = 0;
+const int ID_GROUND = 1;
+const int ID_HILL_1 = 2;
+const int ID_HILL_2 = 3;
+const int ID_PLATFORM_1 = 4;
 
 // Pour paramétrer l'animation du personnage
 const int MIN_INDEX_ANIMATION_HERO = 0;
@@ -120,6 +127,13 @@ const int NB_OF_PLATFORMS = 4;
 
 // Nombre d'objets
 const int NB_OF_OBJECTS = 2;
+
+// Identifiants des plateformes
+const int NO_ID = 0;
+const int ID_GROUND = 1;
+const int ID_PLATFORM_1 = 2;
+const int ID_PLATFORM_2 = 3;
+const int ID_PLATFORM_3 = 4;
 
 // Pour paramétrer l'animation du personnage
 const int MIN_INDEX_ANIMATION_HERO = 0;
