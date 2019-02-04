@@ -24,7 +24,7 @@ Cette première version du jeu de plateforme vise à appréhender le genre, c'es
 
 ## Bugs constatés
 
-* Problème de collision avec certaines plateformes
+* Problème de collision avec certaines plateformes : **travaux en cours**
 
 ## Crédits
 
