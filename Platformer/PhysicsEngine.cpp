@@ -1,6 +1,6 @@
 // author: chris-scientist
 // created at: 30/01/2019
-// updated at: 03/02/2019
+// updated at: 04/02/2019
 
 #include "PhysicsEngine.h"
 
@@ -45,6 +45,7 @@ void jump(Character &aCharacter, Platform * aSet) {
     aCharacter.oldY = aCharacter.y;
     aCharacter.vy += GRAVITY;
     aCharacter.x += aCharacter.vx;
+    gb.display.printf("%d %d ", aCharacter.vy, aCharacter.y);
     aCharacter.y += aCharacter.vy;
   }
 }
@@ -55,6 +56,7 @@ bool gravity(Character &aCharacter, Platform * aSet) {
   
   if( isOnOnePlatform(aCharacter, aSet) == NO_PLATFORM_TYPE ) {
     // Chute libre
+    aCharacter.oldY = aCharacter.y;
     aCharacter.state = FREE_FALL_STATE;
     aCharacter.y += GRAVITY;
     isFall = true;
@@ -99,10 +101,15 @@ const int isOnThePlatform(Character aCharacter, Platform aPlatform) {
 
   if(aCharacter.state == JUMP_STATE && !isFall(aCharacter) && aPlatform.isGoThrough) {
     return NO_PLATFORM_TYPE;
+  } else if(
+    aCharacter.state == JUMP_STATE && 
+    gb.collideRectRect(xCharacter, yCharacter, WIDTH_HERO, HEIGHT_HERO, xPlatform, yPlatform - 1, widthPlatform * aPlatform.lengthPlatform, heightPlatform)
+    ) {
+    return aPlatform.type;
   } else {
     // Selon que l'on saute ou non, le premier test de collision n'est pas le même
     if( (aCharacter.state != JUMP_STATE) ? ( (aCharacter.y + UNDER_CENTER_Y_HERO) == yPlatform ) : ( (aCharacter.y + UNDER_CENTER_Y_HERO) >= yPlatform - 1 ) ) {
-      return gb.collideRectRect(xCharacter, yCharacter, WIDTH_HERO, HEIGHT_HERO, xPlatform, yPlatform - 1, widthPlatform * aPlatform.lengthPlatform, heightPlatform) ? aPlatform.type : NO_PLATFORM_TYPE;
+      return gb.collideRectRect(xCharacter, yCharacter, WIDTH_HERO, HEIGHT_HERO, xPlatform, ( (aCharacter.state != JUMP_STATE) ? yPlatform - 1 : yPlatform - 1), widthPlatform * aPlatform.lengthPlatform, heightPlatform) ? aPlatform.type : NO_PLATFORM_TYPE;
     }
   }
   

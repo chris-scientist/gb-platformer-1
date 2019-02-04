@@ -1,6 +1,6 @@
 // author: chris-scientist
 // created at: 29/01/2019
-// updated at: 03/02/2019
+// updated at: 04/02/2019
 
 #include "Character.h"
 
@@ -28,8 +28,12 @@ void initCharacter(Character &aCharacter) {
   #if DEBUG_PLATFORMER // Mode debug actif ===============================================
   aCharacter.x = 40;
   aCharacter.y = 53;
-  //aCharacter.x = 6;
-  //aCharacter.state = PUSH_FOR_JUMP_STATE;
+  
+  /*aCharacter.x = 45;
+  aCharacter.y = 32;
+  aCharacter.state = FREE_FALL_STATE;
+  aCharacter.vx = HORIZONTAL_VELOCITY;
+  aCharacter.state = PUSH_FOR_JUMP_STATE;*/
   aCharacter.oldY = aCharacter.y;
   #endif
 }
