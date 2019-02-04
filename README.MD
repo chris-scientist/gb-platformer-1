@@ -22,6 +22,10 @@ Cette première version du jeu de plateforme vise à appréhender le genre, c'es
 * Gestion de la partie
 * Gestion multilingue
 
+## Bugs constatés
+
+* Problème de collision avec certaines plateformes
+
 ## Crédits
 
 * Idée originale de [MaxMax](https://gamebuino.com/fr/@Max)
