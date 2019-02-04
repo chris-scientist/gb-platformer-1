@@ -26,13 +26,13 @@ void jump(Character &aCharacter, Platform * aSet) {
     #else // Mode debug actif ===============================================================
     
     // Rebond...
-    switch(platformType) {
+    /*switch(platformType) {
       case GROUND_TYPE:
         aCharacter.y -= 8;
       break;
       default:
         aCharacter.y -= 5;
-    }
+    }*/
     
     aCharacter.state = FREE_FALL_STATE;
     #endif
@@ -101,7 +101,7 @@ const int isOnThePlatform(Character aCharacter, Platform aPlatform) {
     return NO_PLATFORM_TYPE;
   } else {
     // Selon que l'on saute ou non, le premier test de collision n'est pas le même
-    if( (aCharacter.state != JUMP_STATE) ? ( (aCharacter.y + UNDER_CENTER_Y_HERO) == yPlatform ) : ( (aCharacter.y + UNDER_CENTER_Y_HERO) >= yPlatform ) ) {
+    if( (aCharacter.state != JUMP_STATE) ? ( (aCharacter.y + UNDER_CENTER_Y_HERO) == yPlatform ) : ( (aCharacter.y + UNDER_CENTER_Y_HERO) >= yPlatform - 1 ) ) {
       return gb.collideRectRect(xCharacter, yCharacter, WIDTH_HERO, HEIGHT_HERO, xPlatform, yPlatform - 1, widthPlatform * aPlatform.lengthPlatform, heightPlatform) ? aPlatform.type : NO_PLATFORM_TYPE;
     }
   }
