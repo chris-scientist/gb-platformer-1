@@ -14,15 +14,11 @@ void jump(Character &aCharacter, Platform * aSet) {
     aCharacter.vy = -INIT_VERTICAL_VELOCITY;
     aCharacter.state = JUMP_STATE;
 
-    // le personnage saute
-    aCharacter.oldY = aCharacter.y;
-    aCharacter.vy += GRAVITY;
-    aCharacter.x += aCharacter.vx;
-    aCharacter.y += aCharacter.vy;
+    jump(aCharacter);
   } else if( platformId != NO_ID ) {
     // Si on n'est en contact avec une plateforme
 
-    if(aPlatform.isGoThrough || (isFall(aCharacter) && aCharacter.y <= aPlatform.y)) {
+    if(aPlatform.isGoThrough || (isFall(aCharacter) && aCharacter.y <= aPlatform.y) || aPlatform.type == GROUND_TYPE) {
       int overCenterY = OVER_CENTER_Y_PLATFORM;
       switch(aPlatform.type) {
         case GROUND_TYPE:
@@ -36,10 +32,7 @@ void jump(Character &aCharacter, Platform * aSet) {
       aCharacter.state = ON_THE_PLATFORM_STATE;
     } else {
       // le personnage saute
-      aCharacter.oldY = aCharacter.y;
-      aCharacter.vy += GRAVITY;
-      aCharacter.x += aCharacter.vx;
-      aCharacter.y += aCharacter.vy;
+      jump(aCharacter);
     }
     
     //aCharacter.state = ON_THE_PLATFORM_STATE;
@@ -50,11 +43,15 @@ void jump(Character &aCharacter, Platform * aSet) {
     aCharacter.state = FREE_FALL_STATE;
   } else {
     // le personnage saute
-    aCharacter.oldY = aCharacter.y;
-    aCharacter.vy += GRAVITY;
-    aCharacter.x += aCharacter.vx;
-    aCharacter.y += aCharacter.vy;
+    jump(aCharacter);
   }
+}
+
+void jump(Character &aCharacter) {
+  aCharacter.oldY = aCharacter.y;
+  aCharacter.vy += GRAVITY;
+  aCharacter.x += aCharacter.vx;
+  aCharacter.y += aCharacter.vy;
 }
 
 // Si le personnage chute alors on renvoie true, false sinon
@@ -119,18 +116,21 @@ const int isOnThePlatform(Character aCharacter, Platform aPlatform) {
   }
 
   if(aCharacter.state == JUMP_STATE && !isFall(aCharacter) && aPlatform.isGoThrough) {
+    // Lorsque l'on saute, que l'on monte et que la plateforme peut être traversé
+    // alors on ne déclenche pas la détection de collision
     return NO_ID;
   } else if(
       aCharacter.state == JUMP_STATE &&
-      gb.collideRectRect(xCharacter, yCharacter, WIDTH_HERO, HEIGHT_HERO, xPlatform, yPlatform, widthPlatform * aPlatform.lengthPlatform, heightPlatform)
+      gb.collideRectRect(xCharacter, yCharacter + aCharacter.vy, WIDTH_HERO, HEIGHT_HERO, xPlatform, yPlatform, widthPlatform * aPlatform.lengthPlatform, heightPlatform)
     )
   {
     return aPlatform.id;
   } else {
-    // Selon que l'on saute ou non, le premier test de collision n'est pas le même
+    
     if( (aCharacter.y + UNDER_CENTER_Y_HERO) == yPlatform ) {
       return gb.collideRectRect(xCharacter, yCharacter, WIDTH_HERO, HEIGHT_HERO, xPlatform, yPlatform - 1, widthPlatform * aPlatform.lengthPlatform, heightPlatform) ? aPlatform.id : NO_ID;
     }
+    
   }
   
   return NO_ID;

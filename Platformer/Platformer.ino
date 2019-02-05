@@ -1,6 +1,6 @@
 // author: chris-scientist
 // created at: 29/01/2019
-// updated at: 03/02/2019
+// updated at: 05/02/2019
 
 #include <Gamebuino-Meta.h>
 
@@ -65,6 +65,7 @@ void loop() {
     interactionsWithWorld(hero, setOfObjects);
 
     paint(hero, setOfPlatforms, setOfObjects);
+    //delay(1000); // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     /*gb.display.setColor(BLACK);
     gb.display.printf("(%d, %d)",hero.x, hero.y); // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     delay(500);*/

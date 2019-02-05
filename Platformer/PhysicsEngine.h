@@ -12,6 +12,7 @@
 #include "Platform.h"
 
 void jump(Character &aCharacter, Platform * aSet);
+void jump(Character &aCharacter);
 bool gravity(Character &aCharacter, Platform * aSet);
 const int isOnOnePlatform(Character aCharacter, Platform * aSet);
 const int isOnThePlatform(Character aCharacter, Platform aPlatform);
