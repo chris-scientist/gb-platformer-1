@@ -1,6 +1,6 @@
 // author: chris-scientist
 // created at: 30/01/2019
-// updated at: 04/02/2019
+// updated at: 05/02/2019
 
 #include "PhysicsEngine.h"
 
@@ -22,7 +22,7 @@ void jump(Character &aCharacter, Platform * aSet) {
   } else if( platformId != NO_ID ) {
     // Si on n'est en contact avec une plateforme
 
-    if(aPlatform.isGoThrough) {
+    if(aPlatform.isGoThrough || (isFall(aCharacter) && aCharacter.y <= aPlatform.y)) {
       int overCenterY = OVER_CENTER_Y_PLATFORM;
       switch(aPlatform.type) {
         case GROUND_TYPE:
@@ -33,9 +33,16 @@ void jump(Character &aCharacter, Platform * aSet) {
         break;
       }
       aCharacter.y = (aPlatform.y - (overCenterY + UNDER_CENTER_Y_HERO));
+      aCharacter.state = ON_THE_PLATFORM_STATE;
+    } else {
+      // le personnage saute
+      aCharacter.oldY = aCharacter.y;
+      aCharacter.vy += GRAVITY;
+      aCharacter.x += aCharacter.vx;
+      aCharacter.y += aCharacter.vy;
     }
     
-    aCharacter.state = ON_THE_PLATFORM_STATE;
+    //aCharacter.state = ON_THE_PLATFORM_STATE;
     
   } else if( isOutOfWorld(aCharacter) ) {
     // Si le saut nous conduit en dehors du monde
