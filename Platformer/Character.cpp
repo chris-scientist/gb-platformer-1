@@ -20,7 +20,7 @@ void initCharacter(Character &aCharacter) {
   aCharacter.animation = MIN_INDEX_ANIMATION_HERO;
 
   // On initialise la vitesse verticale
-  aCharacter.vy = INIT_VERTICAL_VELOCITY;
+  aCharacter.vy = 0;
 
   // par défaut, le joueur est dans un état "normal" c'est-à-dire sur le sol
   aCharacter.state = ON_THE_PLATFORM_STATE;
