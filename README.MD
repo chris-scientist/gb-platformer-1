@@ -14,12 +14,12 @@ Cette première version du jeu de plateforme vise à appréhender le genre, c'es
 * Gestion de la physique : Personnage - Plateforme / Sol, gravité
 * Gestion du saut du personnage
 * Interactions dans l'univers avec les objets
+* Gestion du temps
 
 ### À implémenter
 
-* Gestion du temps
 * Gérer le high score
-* Gestion de la partie
+* Gestion de la partie (avec game over)
 * Gestion multilingue
 
 ## Crédits
