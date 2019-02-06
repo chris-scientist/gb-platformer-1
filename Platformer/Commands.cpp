@@ -6,7 +6,7 @@
 
 const int manageCommandsForHome() {
   if(gb.buttons.pressed(BUTTON_A)) {
-    return PLAY_STATE;
+    return LAUNCH_PLAY_STATE;
   }
   return HOME_STATE;
 }

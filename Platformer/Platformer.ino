@@ -42,32 +42,45 @@ void loop() {
 
   gb.display.clear();
 
-  if(stateOfGame == HOME_STATE) {
-    // Ecran d'accueil
-    
-    paintHomeScreen();
-    initCharacter(hero); // ......... on réinitialise la position du personnage
-    initObjects(setOfObjects); // ... on réinitialise les objets
-    stateOfGame = manageCommandsForHome();
-  } else {
-    // Partie en cours...
+  switch(stateOfGame) {
+    case HOME_STATE:
+      // Ecran d'accueil
+      
+      paintHomeScreen();
+      stateOfGame = manageCommandsForHome();
+      break;
+    case LAUNCH_PLAY_STATE:
+      // initialisé la partie
+      
+      initCharacter(hero); // ......... on réinitialise la position du personnage
+      initObjects(setOfObjects); // ... on réinitialise les objets
 
-    if(hero.state == ON_THE_PLATFORM_STATE) {
-      stateOfGame = manageCommands(hero);
-    }
-    
-    if(hero.state != JUMP_STATE && hero.state != PUSH_FOR_JUMP_STATE) {
-      gravity(hero, setOfPlatforms);
-    } else if(hero.state == JUMP_STATE || hero.state == PUSH_FOR_JUMP_STATE) {
-      jump(hero, setOfPlatforms);
-    }
-    
-    interactionsWithWorld(hero, setOfObjects);
-
-    paint(hero, setOfPlatforms, setOfObjects);
-    //delay(1000); // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-    /*gb.display.setColor(BLACK);
-    gb.display.printf("(%d, %d)",hero.x, hero.y); // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-    delay(500);*/
+      stateOfGame = PLAY_STATE;
+      break;
+    case PLAY_STATE:
+      // Partie en cours...
+  
+      if(hero.state == ON_THE_PLATFORM_STATE) {
+        stateOfGame = manageCommands(hero);
+      }
+      
+      if(hero.state != JUMP_STATE && hero.state != PUSH_FOR_JUMP_STATE) {
+        gravity(hero, setOfPlatforms);
+      } else if(hero.state == JUMP_STATE || hero.state == PUSH_FOR_JUMP_STATE) {
+        jump(hero, setOfPlatforms);
+      }
+      
+      interactionsWithWorld(hero, setOfObjects);
+  
+      paint(hero, setOfPlatforms, setOfObjects);
+      //delay(1000); // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+      /*gb.display.setColor(BLACK);
+      gb.display.printf("(%d, %d)",hero.x, hero.y); // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+      delay(500);*/
+      break;
+    default:
+      gb.display.println("Etat non gere");
+      delay(1000);
+      stateOfGame = HOME_STATE;
   }
 }

@@ -11,7 +11,8 @@
 
 // Etat du jeu
 const int HOME_STATE = 0;
-const int PLAY_STATE = 1;
+const int LAUNCH_PLAY_STATE = 1;
+const int PLAY_STATE = 2;
 
 // Type de plateforme
 const int NO_PLATFORM_TYPE = 0;
