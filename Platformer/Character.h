@@ -1,11 +1,12 @@
 // author: chris-scientist
 // created at: 29/01/2019
-// updated at: 02/02/2019
+// updated at: 07/02/2019
 
 #ifndef PLATFORMER_CHARACTER
 #define PLATFORMER_CHARACTER
 
 #include "Constantes.h"
+#include "Platform.h"
 
 struct Character {
   int x; // ........................... position x
@@ -21,5 +22,6 @@ struct Character {
 
 void initCharacter(Character &aCharacter);
 bool isFall(Character aCharacter);
+void rectifyPositionY(Character &aCharacter, Platform &aPlatform);
 
 #endif

@@ -1,6 +1,6 @@
 // author: chris-scientist
 // created at: 29/01/2019
-// updated at: 05/02/2019
+// updated at: 07/02/2019
 
 #include "Character.h"
 
@@ -40,4 +40,17 @@ void initCharacter(Character &aCharacter) {
 
 bool isFall(Character aCharacter) {
   return (aCharacter.oldY - aCharacter.y) < 0;
+}
+
+void rectifyPositionY(Character &aCharacter, Platform &aPlatform) {
+  int overCenterY = OVER_CENTER_Y_PLATFORM;
+  switch(aPlatform.type) {
+    case GROUND_TYPE:
+      overCenterY = OVER_CENTER_Y_GROUND;
+    break;
+    case HILL_TYPE:
+      overCenterY = OVER_CENTER_Y_HILL;
+    break;
+  }
+  aCharacter.y = (aPlatform.y - (overCenterY + UNDER_CENTER_Y_HERO));
 }

@@ -19,17 +19,8 @@ void jump(Character &aCharacter, Platform * aSet) {
     // Si on n'est en contact avec une plateforme
 
     if(aPlatform.isGoThrough || (isFall(aCharacter) && aCharacter.y <= aPlatform.y) || aPlatform.type == GROUND_TYPE) {
-      int overCenterY = OVER_CENTER_Y_PLATFORM;
-      switch(aPlatform.type) {
-        case GROUND_TYPE:
-          overCenterY = OVER_CENTER_Y_GROUND;
-        break;
-        case HILL_TYPE:
-          overCenterY = OVER_CENTER_Y_HILL;
-        break;
-      }
+      rectifyPositionY(aCharacter, aPlatform);
       aCharacter.vy = 0;
-      aCharacter.y = (aPlatform.y - (overCenterY + UNDER_CENTER_Y_HERO));
       aCharacter.state = ON_THE_PLATFORM_STATE;
     } else {
       // le personnage saute
@@ -70,17 +61,8 @@ bool gravity(Character &aCharacter, Platform * aSet) {
     isFall = true;
   } else {
     // En conctat avec une structure (plateforme, sol, etc)
-    int overCenterY = OVER_CENTER_Y_PLATFORM;
-    switch(aPlatform.type) {
-      case GROUND_TYPE:
-        overCenterY = OVER_CENTER_Y_GROUND;
-      break;
-      case HILL_TYPE:
-        overCenterY = OVER_CENTER_Y_HILL;
-      break;
-    }
+    rectifyPositionY(aCharacter, aPlatform);
     aCharacter.vy = 0;
-    aCharacter.y = (aPlatform.y - (overCenterY + UNDER_CENTER_Y_HERO));
     aCharacter.state = ON_THE_PLATFORM_STATE;
   }
 
