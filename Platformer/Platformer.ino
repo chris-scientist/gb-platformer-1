@@ -1,12 +1,13 @@
 // author: chris-scientist
 // created at: 29/01/2019
-// updated at: 05/02/2019
+// updated at: 07/02/2019
 
 #include <Gamebuino-Meta.h>
 
 #include "Constantes.h"
 #include "Commands.h"
 #include "Display.h"
+#include "Timer.h"
 #include "PhysicsEngine.h"
 #include "Interactions.h"
 #include "Character.h"
@@ -17,6 +18,7 @@
 Character hero;
 Platform setOfPlatforms[NB_OF_PLATFORMS];
 Object setOfObjects[NB_OF_OBJECTS];
+Timer myTimer;
 int stateOfGame = HOME_STATE;
 
 void setup() {
@@ -24,6 +26,7 @@ void setup() {
   gb.begin();
 
   initPlatforms(setOfPlatforms);
+  createTimer(myTimer);
 
   /*
   // debug
@@ -54,14 +57,24 @@ void loop() {
       
       initCharacter(hero); // ......... on réinitialise la position du personnage
       initObjects(setOfObjects); // ... on réinitialise les objets
+      resetTimer(myTimer);
+      myTimer.activateTimer = true;
 
       stateOfGame = PLAY_STATE;
       break;
     case PLAY_STATE:
       // Partie en cours...
+
+      runTimer(myTimer);
   
       if(hero.state == ON_THE_PLATFORM_STATE) {
         stateOfGame = manageCommands(hero);
+        switch(stateOfGame) {
+          case HOME_STATE:
+            myTimer.activateTimer = false;
+            pauseForTimer(myTimer);
+            break;
+        }
       }
       
       if(hero.state != JUMP_STATE && hero.state != PUSH_FOR_JUMP_STATE) {
@@ -72,7 +85,7 @@ void loop() {
       
       interactionsWithWorld(hero, setOfObjects);
   
-      paint(hero, setOfPlatforms, setOfObjects);
+      paint(hero, setOfPlatforms, setOfObjects, myTimer);
       //delay(1000); // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
       /*gb.display.setColor(BLACK);
       gb.display.printf("(%d, %d)",hero.x, hero.y); // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<

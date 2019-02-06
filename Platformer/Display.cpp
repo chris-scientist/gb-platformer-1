@@ -1,6 +1,6 @@
 // author: chris-scientist
 // created at: 29/01/2019
-// updated at: 03/02/2019
+// updated at: 07/02/2019
 
 #include "Display.h"
 
@@ -139,13 +139,14 @@ void paintHomeScreen() {
 }
 
 // Dessiner le jeu
-void paint(Character &aCharacter, Platform * aSet, Object * aSetOfObjects) {
+void paint(Character &aCharacter, Platform * aSet, Object * aSetOfObjects, Timer &aTimer) {
   #if ! DEBUG_PLATFORMER
   paintBackground();
   #endif
   paintPlatforms(aSet);
   paintObjects(aSetOfObjects);
   paintHero(aCharacter);
+  paintTimer(aTimer.timeInSeconds + aTimer.tempTime, aTimer.valueOfTime);
 }
 
 // Dessiner le fond
@@ -353,6 +354,24 @@ void paintDoor(const int aX, const int aY, const int aState) {
   paintBox(x, y, WIDTH_DOOR, HEIGHT_DOOR, (aState == DOOR_BTW_OPEN ? color4DoorOpen : color4DoorClosed));
   #endif
 }
+
+
+void paintTimer(int aTimeInFrames, const int * aTime) {
+  gb.display.setFontSize(1);
+  gb.display.setColor(WHITE);
+  // afficher les minutes et secondes
+  int nbMinutes = aTime[MINUTES_NUMBER];
+  if(nbMinutes < 10) {
+    gb.display.print("0");
+  }
+  gb.display.printf("%d:", nbMinutes);
+  int nbSeconds = aTime[SECONDS_NUMBER];
+  if(nbSeconds < 10) {
+    gb.display.print("0");
+  }
+  gb.display.printf("%d", nbSeconds);
+}
+
 
 #if DEBUG_PLATFORMER
 void paintBox(const int aX, const int aY, const int aWidth, const int aHeight, const Color aColor) {
