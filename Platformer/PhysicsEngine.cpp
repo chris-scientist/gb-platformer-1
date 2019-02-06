@@ -1,6 +1,6 @@
 // author: chris-scientist
 // created at: 30/01/2019
-// updated at: 05/02/2019
+// updated at: 06/02/2019
 
 #include "PhysicsEngine.h"
 
@@ -28,6 +28,7 @@ void jump(Character &aCharacter, Platform * aSet) {
           overCenterY = OVER_CENTER_Y_HILL;
         break;
       }
+      aCharacter.vy = 0;
       aCharacter.y = (aPlatform.y - (overCenterY + UNDER_CENTER_Y_HERO));
       aCharacter.state = ON_THE_PLATFORM_STATE;
     } else {
@@ -63,8 +64,9 @@ bool gravity(Character &aCharacter, Platform * aSet) {
   if( platformId == NO_ID ) {
     // Chute libre
     aCharacter.oldY = aCharacter.y;
+    aCharacter.vy += GRAVITY;
     aCharacter.state = FREE_FALL_STATE;
-    aCharacter.y += GRAVITY;
+    aCharacter.y += aCharacter.vy;
     isFall = true;
   } else {
     // En conctat avec une structure (plateforme, sol, etc)
@@ -77,6 +79,7 @@ bool gravity(Character &aCharacter, Platform * aSet) {
         overCenterY = OVER_CENTER_Y_HILL;
       break;
     }
+    aCharacter.vy = 0;
     aCharacter.y = (aPlatform.y - (overCenterY + UNDER_CENTER_Y_HERO));
     aCharacter.state = ON_THE_PLATFORM_STATE;
   }
@@ -127,8 +130,8 @@ const int isOnThePlatform(Character aCharacter, Platform aPlatform) {
     return aPlatform.id;
   } else {
     
-    if( (aCharacter.y + UNDER_CENTER_Y_HERO) == yPlatform ) {
-      return gb.collideRectRect(xCharacter, yCharacter, WIDTH_HERO, HEIGHT_HERO, xPlatform, yPlatform - 1, widthPlatform * aPlatform.lengthPlatform, heightPlatform) ? aPlatform.id : NO_ID;
+    if( (aCharacter.y + UNDER_CENTER_Y_HERO) + aCharacter.vy >= yPlatform ) {
+      return gb.collideRectRect(xCharacter, yCharacter + aCharacter.vy, WIDTH_HERO, HEIGHT_HERO, xPlatform, yPlatform - 1, widthPlatform * aPlatform.lengthPlatform, heightPlatform) ? aPlatform.id : NO_ID;
     }
     
   }
