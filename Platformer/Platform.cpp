@@ -7,7 +7,7 @@
 void initPlatforms(Platform * aSet) {
   #if ! DEBUG_PLATFORMER // Mode debug inactif ===========================================
   
-  aSet[0] = createPlatform(4, 59, 10, GROUND_TYPE, ID_GROUD, false);
+  aSet[0] = createPlatform(4, 59, 10, GROUND_TYPE, ID_GROUND, false);
   aSet[1] = createPlatform(4, 46, 3, HILL_TYPE, ID_HILL_1, true);
   aSet[2] = createPlatform(60, 46, 3, HILL_TYPE, ID_HILL_2, true);
   aSet[3] = createPlatform(24, 20, 5, PLATFORM_TYPE, ID_PLATFORM_1, false);
