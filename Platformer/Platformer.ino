@@ -67,8 +67,10 @@ void loop() {
       // Partie en cours...
 
       runTimer(myTimer);
+
+      stateOfGame = ( isGameOver(myTimer) ? GAME_OVER_STATE : PLAY_STATE );
   
-      if(hero.state == ON_THE_PLATFORM_STATE) {
+      if(hero.state == ON_THE_PLATFORM_STATE && stateOfGame != GAME_OVER_STATE) {
         stateOfGame = manageCommands(hero);
         switch(stateOfGame) {
           case HOME_STATE:
@@ -85,8 +87,6 @@ void loop() {
       }
       
       interactionsWithWorld(hero, setOfObjects);
-
-      stateOfGame = ( isGameOver(myTimer) ? GAME_OVER_STATE : PLAY_STATE );
   
       paint(hero, setOfPlatforms, setOfObjects, myTimer);
       //delay(1000); // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
