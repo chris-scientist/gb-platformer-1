@@ -26,7 +26,6 @@ void setup() {
   // initialiser la gamebuino
   gb.begin();
 
-  initPlatforms(setOfPlatforms);
   createTimer(myTimer);
 
   /*
@@ -57,6 +56,7 @@ void loop() {
       // initialisé la partie
       
       initCharacter(hero); // ......... on réinitialise la position du personnage
+      initPlatforms(setOfPlatforms);
       initObjects(setOfObjects); // ... on réinitialise les objets
       resetTimer(myTimer);
       myTimer.activateTimer = true;
