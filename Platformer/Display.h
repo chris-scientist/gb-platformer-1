@@ -15,6 +15,7 @@
 
 void paintHomeScreen();
 void paintGameOverScreen();
+void paintEndOfGame();
 void paint(Character &aCharacter, Platform * aSet, Object * aSetOfObjects, Timer &aTimer);
 void paintBackground();
 void paintHero(Character &aCharacter);

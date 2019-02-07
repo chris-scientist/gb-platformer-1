@@ -7,13 +7,13 @@
 void initObjects(Object * aSet) {
   #if ! DEBUG_PLATFORMER // Mode debug inactif ===========================================
   
-  aSet[0] = createObject(40, 13, KEY_OBJECT, KEY_ON_THE_PLATFORM);
-  aSet[1] = createObject(72, 48, DOOR_OBJECT, DOOR_CLOSED);
+  aSet[KEY_OBJECT_ID] = createObject(40, 13, KEY_OBJECT, KEY_ON_THE_PLATFORM);
+  aSet[DOOR_OBJECT_ID] = createObject(72, 48, DOOR_OBJECT, DOOR_CLOSED);
 
   #else // Mode debug actif ==============================================================
 
-  aSet[0] = createObject(75, 23, KEY_OBJECT, KEY_ON_THE_PLATFORM);
-  aSet[1] = createObject(72, 51, DOOR_OBJECT, DOOR_CLOSED);
+  aSet[KEY_OBJECT_ID] = createObject(75, 23, KEY_OBJECT, KEY_ON_THE_PLATFORM);
+  aSet[DOOR_OBJECT_ID] = createObject(72, 51, DOOR_OBJECT, DOOR_CLOSED);
 
   #endif
 }

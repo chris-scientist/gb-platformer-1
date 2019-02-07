@@ -13,7 +13,8 @@
 const int HOME_STATE = 0;
 const int LAUNCH_PLAY_STATE = 1;
 const int PLAY_STATE = 2;
-const int GAME_OVER_STATE = 3;
+const int GAME_IS_FINISH = 3;
+const int GAME_OVER_STATE = 4;
 
 // Type de plateforme
 const int NO_PLATFORM_TYPE = 0;
@@ -23,6 +24,10 @@ const int HILL_TYPE = 3;
 
 // Temps maximum d'une partie (en secondes)
 const int MAX_TIME_OF_GAME = 10;
+
+// Identifiant objet
+const int KEY_OBJECT_ID = 0;
+const int DOOR_OBJECT_ID = 1;
 
 #if ! DEBUG_PLATFORMER // Mode debug inactif ===========================================
 

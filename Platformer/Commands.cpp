@@ -11,13 +11,13 @@ const int manageCommandsForHome() {
   return HOME_STATE;
 }
 
-const int manageCommandsForGameOver() {
+const int manageCommandsOutOfGame(bool isGameOver) {
   if(gb.buttons.pressed(BUTTON_A)) {
     return LAUNCH_PLAY_STATE;
   } else if(gb.buttons.pressed(BUTTON_B)) {
     return HOME_STATE;
   }
-  return GAME_OVER_STATE;
+  return (isGameOver ? GAME_OVER_STATE : GAME_IS_FINISH);
 }
 
 const int manageCommands(Character &aCharacter) {

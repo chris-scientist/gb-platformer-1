@@ -153,6 +153,21 @@ void paintGameOverScreen() {
   gb.display.println("(B) Menu");
 }
 
+void paintEndOfGame() {
+  gb.display.setFontSize(2);
+  gb.display.setColor(BROWN);
+  gb.display.println("");
+  gb.display.println("");
+  gb.display.println("   BRAVO");
+
+  gb.display.setFontSize(1);
+  gb.display.setColor(WHITE);
+  gb.display.println("");
+  gb.display.println("");
+  gb.display.println("(A) Rejouer");
+  gb.display.println("(B) Menu");
+}
+
 // Dessiner le jeu
 void paint(Character &aCharacter, Platform * aSet, Object * aSetOfObjects, Timer &aTimer) {
   #if ! DEBUG_PLATFORMER

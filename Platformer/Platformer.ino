@@ -68,9 +68,13 @@ void loop() {
 
       runTimer(myTimer);
 
-      stateOfGame = ( isGameOver(myTimer) ? GAME_OVER_STATE : PLAY_STATE );
+      if( isEndOfGame(setOfObjects[DOOR_OBJECT_ID]) ) {
+        stateOfGame = GAME_IS_FINISH;
+      } else {
+        stateOfGame = ( isGameOver(myTimer) ? GAME_OVER_STATE : PLAY_STATE );
+      }
   
-      if(hero.state == ON_THE_PLATFORM_STATE && stateOfGame != GAME_OVER_STATE) {
+      if(hero.state == ON_THE_PLATFORM_STATE && (stateOfGame != GAME_OVER_STATE && stateOfGame != GAME_IS_FINISH)) {
         stateOfGame = manageCommands(hero);
         switch(stateOfGame) {
           case HOME_STATE:
@@ -94,8 +98,12 @@ void loop() {
       gb.display.printf("(%d, %d)",hero.x, hero.y); // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
       delay(500);*/
       break;
+    case GAME_IS_FINISH:
+      stateOfGame = manageCommandsOutOfGame(false);
+      paintEndOfGame();
+      break;
     case GAME_OVER_STATE:
-      stateOfGame = manageCommandsForGameOver();
+      stateOfGame = manageCommandsOutOfGame(true);
       paintGameOverScreen();
       break;
     default:

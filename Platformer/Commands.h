@@ -12,7 +12,7 @@
 #include "PhysicsEngine.h"
 
 const int manageCommandsForHome();
-const int manageCommandsForGameOver();
+const int manageCommandsOutOfGame(bool isGameOver);
 const int manageCommands(Character &aCharacter);
 
 #endif
