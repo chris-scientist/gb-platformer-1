@@ -15,11 +15,11 @@ Cette première version du jeu de plateforme vise à appréhender le genre, c'es
 * Gestion du saut du personnage
 * Interactions dans l'univers avec les objets
 * Gestion du temps
+* Gestion de la partie (avec game over)
 
 ### À implémenter
 
 * Gérer le high score
-* Gestion de la partie (avec game over)
 * Gestion multilingue
 
 ## Crédits
