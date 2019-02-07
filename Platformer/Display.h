@@ -14,6 +14,7 @@
 #include "Object.h"
 
 void paintHomeScreen();
+void paintGameOverScreen();
 void paint(Character &aCharacter, Platform * aSet, Object * aSetOfObjects, Timer &aTimer);
 void paintBackground();
 void paintHero(Character &aCharacter);

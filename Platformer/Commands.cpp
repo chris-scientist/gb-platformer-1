@@ -11,6 +11,15 @@ const int manageCommandsForHome() {
   return HOME_STATE;
 }
 
+const int manageCommandsForGameOver() {
+  if(gb.buttons.pressed(BUTTON_A)) {
+    return LAUNCH_PLAY_STATE;
+  } else if(gb.buttons.pressed(BUTTON_B)) {
+    return HOME_STATE;
+  }
+  return GAME_OVER_STATE;
+}
+
 const int manageCommands(Character &aCharacter) {
   bool isMove = false;
   aCharacter.vx = 0;

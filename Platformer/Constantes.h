@@ -1,6 +1,6 @@
 // author: chris-scientist
 // created at: 30/01/2019
-// updated at: 04/02/2019
+// updated at: 07/02/2019
 
 #ifndef PLATFORMER_CONSTANTES
 #define PLATFORMER_CONSTANTES
@@ -13,12 +13,16 @@
 const int HOME_STATE = 0;
 const int LAUNCH_PLAY_STATE = 1;
 const int PLAY_STATE = 2;
+const int GAME_OVER_STATE = 3;
 
 // Type de plateforme
 const int NO_PLATFORM_TYPE = 0;
 const int GROUND_TYPE = 1;
 const int PLATFORM_TYPE = 2;
 const int HILL_TYPE = 3;
+
+// Temps maximum d'une partie (en secondes)
+const int MAX_TIME_OF_GAME = 10;
 
 #if ! DEBUG_PLATFORMER // Mode debug inactif ===========================================
 
@@ -48,6 +52,7 @@ const int ON_THE_PLATFORM_STATE = 0;
 const int FREE_FALL_STATE = 1;
 const int PUSH_FOR_JUMP_STATE = 2;
 const int JUMP_STATE = 3;
+const int CONTACT_WITH_PLATFORM_STATE = 4;
 
 // Pour un personnage de 13 pixels de haut sur 8 pixels de large
 const int WIDTH_HERO = 8;
@@ -146,6 +151,7 @@ const int ON_THE_PLATFORM_STATE = 0;
 const int FREE_FALL_STATE = 1;
 const int PUSH_FOR_JUMP_STATE = 2;
 const int JUMP_STATE = 3;
+const int CONTACT_WITH_PLATFORM_STATE = 4;
 
 // Pour un personnage de 13 pixels de haut sur 8 pixels de large
 const int WIDTH_HERO = 6;

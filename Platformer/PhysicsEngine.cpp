@@ -24,6 +24,7 @@ void jump(Character &aCharacter, Platform * aSet) {
       aCharacter.state = ON_THE_PLATFORM_STATE;
     } else {
       // le personnage saute
+      aCharacter.vy = 0;
       jump(aCharacter);
     }
     

@@ -5,6 +5,7 @@
 #include <Gamebuino-Meta.h>
 
 #include "Constantes.h"
+#include "Game.h"
 #include "Commands.h"
 #include "Display.h"
 #include "Timer.h"
@@ -84,12 +85,18 @@ void loop() {
       }
       
       interactionsWithWorld(hero, setOfObjects);
+
+      stateOfGame = ( isGameOver(myTimer) ? GAME_OVER_STATE : PLAY_STATE );
   
       paint(hero, setOfPlatforms, setOfObjects, myTimer);
       //delay(1000); // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
       /*gb.display.setColor(BLACK);
       gb.display.printf("(%d, %d)",hero.x, hero.y); // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
       delay(500);*/
+      break;
+    case GAME_OVER_STATE:
+      stateOfGame = manageCommandsForGameOver();
+      paintGameOverScreen();
       break;
     default:
       gb.display.println("Etat non gere");

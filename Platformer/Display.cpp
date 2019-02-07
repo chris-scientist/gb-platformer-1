@@ -138,6 +138,21 @@ void paintHomeScreen() {
   gb.display.print("    A pour jouer");
 }
 
+void paintGameOverScreen() {
+  gb.display.setFontSize(2);
+  gb.display.setColor(BROWN);
+  gb.display.println("");
+  gb.display.println("");
+  gb.display.println("GAME OVER");
+
+  gb.display.setFontSize(1);
+  gb.display.setColor(WHITE);
+  gb.display.println("");
+  gb.display.println("");
+  gb.display.println("(A) Rejouer");
+  gb.display.println("(B) Menu");
+}
+
 // Dessiner le jeu
 void paint(Character &aCharacter, Platform * aSet, Object * aSetOfObjects, Timer &aTimer) {
   #if ! DEBUG_PLATFORMER
