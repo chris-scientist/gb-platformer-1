@@ -20,7 +20,7 @@ void paintBackground();
 void paintHero(Character &aCharacter);
 void paintPlatforms(Platform * aSet);
 void paintPlatform(Platform aPlatform);
-void paintPlatform(const int anIndex, const int aNbBlocks, const int aX, const int aY);
+void paintPlatform(const int anIndex, const int aNbBlocks, const int aX, const int aY, const bool isGoThrough);
 void paintHill(const int anIndex, const int aNbBlocks, const int aX, const int aY);
 void paintGround(const int aX, const int aY);
 void paintObjects(Object * aSet);

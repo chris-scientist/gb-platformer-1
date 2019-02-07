@@ -258,7 +258,7 @@ void paintPlatform(Platform aPlatform) {
         x += WIDTH_HILL;
       break;
       default: // on dessine une plateforme
-        paintPlatform(i, aPlatform.lengthPlatform, x, y);
+        paintPlatform(i, aPlatform.lengthPlatform, x, y, aPlatform.isGoThrough);
         x += WIDTH_PLATFORM;
     }
     
@@ -267,7 +267,7 @@ void paintPlatform(Platform aPlatform) {
 }
 
 // Dessiner une plateforme flottante
-void paintPlatform(const int anIndex, const int aNbBlocks, const int aX, const int aY) {
+void paintPlatform(const int anIndex, const int aNbBlocks, const int aX, const int aY, const bool isGoThrough) {
   #if ! DEBUG_PLATFORMER // Mode debug inactif ===========================================
   
   if(anIndex == 0) {
@@ -284,7 +284,7 @@ void paintPlatform(const int anIndex, const int aNbBlocks, const int aX, const i
   }
   #else // Mode debug actif ==============================================================
 
-  paintBox(aX, aY, WIDTH_PLATFORM, HEIGHT_PLATFORM, color4Platform);
+  paintBox(aX, aY, WIDTH_PLATFORM, HEIGHT_PLATFORM, (isGoThrough ? color4PlatformT : color4PlatformNotT));
 
   #endif
 }
