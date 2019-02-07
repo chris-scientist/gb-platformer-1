@@ -23,7 +23,7 @@ const int PLATFORM_TYPE = 2;
 const int HILL_TYPE = 3;
 
 // Temps maximum d'une partie (en secondes)
-const int MAX_TIME_OF_GAME = 10;
+const int MAX_TIME_OF_GAME = 20;
 
 // Identifiant objet
 const int KEY_OBJECT_ID = 0;
