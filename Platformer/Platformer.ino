@@ -41,6 +41,9 @@ void setup() {
     gb.display.println("");
   }
   delay(10000);*/
+  gb.display.setColor(WHITE);
+  gb.display.println("  Work in progress");
+  delay(1000);
 }
 
 void loop() {
@@ -53,8 +56,8 @@ void loop() {
     case HOME_STATE:
       // Ecran d'accueil
       
-      paintHomeScreen();
-      stateOfGame = manageCommandsForHome();
+      stateOfGame = paintHomeScreen();
+      //stateOfGame = manageCommandsForHome();
       break;
     case LAUNCH_PLAY_STATE:
       // initialisé la partie

@@ -8,6 +8,7 @@
 #include <Gamebuino-Meta.h>
 
 #include "Constantes.h"
+#include "Lang.h"
 #include "Timer.h"
 #include "HighScore.h"
 #include "Character.h"
@@ -15,7 +16,7 @@
 #include "Object.h"
 
 char * paintInputPseudoWindow();
-void paintHomeScreen();
+const int paintHomeScreen();
 void paintGameOverScreen();
 void paintEndOfGame();
 void paint(Character &aCharacter, Platform * aSet, Object * aSetOfObjects, Timer &aTimer);

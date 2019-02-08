@@ -137,14 +137,20 @@ char * paintInputPseudoWindow() {
   return pseudo;
 }
 
-void paintHomeScreen() {
-  gb.display.setColor(WHITE);
-  gb.display.println("  Work in progress");
-  gb.display.println("");
-  gb.display.println("");
-  gb.display.println("");
-  gb.display.setColor(BROWN);
-  gb.display.print("    A pour jouer");
+const int paintHomeScreen() {
+  const char* items[] = {
+    PLAY_FR,
+    HIGH_SCORE_FR
+  };
+
+  const uint8_t indexItem = gb.gui.menu("Menu", items);
+  int choice = HOME_STATE;
+  if(items[indexItem] == PLAY_FR) {
+    choice = LAUNCH_PLAY_STATE;
+  } else if(items[indexItem] == HIGH_SCORE_FR) {
+    choice = HIGH_SCORE_STATE;
+  }
+  return choice;
 }
 
 void paintGameOverScreen() {
