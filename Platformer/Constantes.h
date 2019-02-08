@@ -1,6 +1,6 @@
 // author: chris-scientist
 // created at: 30/01/2019
-// updated at: 07/02/2019
+// updated at: 08/02/2019
 
 #ifndef PLATFORMER_CONSTANTES
 #define PLATFORMER_CONSTANTES
@@ -15,6 +15,8 @@ const int LAUNCH_PLAY_STATE = 1;
 const int PLAY_STATE = 2;
 const int GAME_IS_FINISH = 3;
 const int GAME_OVER_STATE = 4;
+const int SAVE_HIGH_SCORE_STATE = 5;
+const int HIGH_SCORE_STATE = 6;
 
 // Type de plateforme
 const int NO_PLATFORM_TYPE = 0;
@@ -28,6 +30,21 @@ const int MAX_TIME_OF_GAME = 20;
 // Identifiant objet
 const int KEY_OBJECT_ID = 0;
 const int DOOR_OBJECT_ID = 1;
+
+// Identifiant des meilleurs scores
+const uint8_t NO_HIGH_SCORE = 0;
+const uint8_t HIGH_SCORE_1 = 1;
+const uint8_t HIGH_SCORE_2 = 2;
+const uint8_t HIGH_SCORE_3 = 3;
+
+// Bloc pour sauvegarde les meilleurs scores
+const uint16_t NB_HIGH_SCORE_BLOCK = 0;
+const uint16_t NAME_HIGH_SCORE_1_BLOCK = 1;
+const uint16_t SCORE_HIGH_SCORE_1_BLOCK = 2;
+const uint16_t NAME_HIGH_SCORE_2_BLOCK = 3;
+const uint16_t SCORE_HIGH_SCORE_2_BLOCK = 4;
+const uint16_t NAME_HIGH_SCORE_3_BLOCK = 5;
+const uint16_t SCORE_HIGH_SCORE_3_BLOCK = 6;
 
 #if ! DEBUG_PLATFORMER // Mode debug inactif ===========================================
 

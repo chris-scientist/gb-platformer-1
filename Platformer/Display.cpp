@@ -1,6 +1,6 @@
 // author: chris-scientist
 // created at: 29/01/2019
-// updated at: 07/02/2019
+// updated at: 08/02/2019
 
 #include "Display.h"
 
@@ -127,6 +127,15 @@ Image doorOpen(doorOpenData);
 
 // **************************************************************************
 // Code
+
+char * paintInputPseudoWindow() {
+  char pseudo[5] = "    ";
+
+  gb.gui.keyboard("Votre pseudo", pseudo);
+  gb.display.clear();
+
+  return pseudo;
+}
 
 void paintHomeScreen() {
   gb.display.setColor(WHITE);

@@ -1,6 +1,6 @@
 // author: chris-scientist
 // created at: 29/01/2019
-// updated at: 07/02/2019
+// updated at: 08/02/2019
 
 #include <Gamebuino-Meta.h>
 
@@ -9,6 +9,7 @@
 #include "Commands.h"
 #include "Display.h"
 #include "Timer.h"
+#include "HighScoreManager.h"
 #include "PhysicsEngine.h"
 #include "Interactions.h"
 #include "Character.h"
@@ -20,6 +21,7 @@ Character hero;
 Platform setOfPlatforms[NB_OF_PLATFORMS];
 Object setOfObjects[NB_OF_OBJECTS];
 Timer myTimer;
+HighScoreManager highScoreManager;
 int stateOfGame = HOME_STATE;
 
 void setup() {
@@ -27,6 +29,8 @@ void setup() {
   gb.begin();
 
   createTimer(myTimer);
+  initHighScoreManager(highScoreManager);
+  loadAllHighScore(highScoreManager);
 
   /*
   // debug
@@ -58,6 +62,7 @@ void loop() {
       initCharacter(hero); // ......... on réinitialise la position du personnage
       initPlatforms(setOfPlatforms);
       initObjects(setOfObjects); // ... on réinitialise les objets
+      resetIndexNewHighScore(highScoreManager);
       resetTimer(myTimer);
       myTimer.activateTimer = true;
 
@@ -68,12 +73,6 @@ void loop() {
 
       runTimer(myTimer);
 
-      if( isEndOfGame(setOfObjects[DOOR_OBJECT_ID]) ) {
-        stateOfGame = GAME_IS_FINISH;
-      } else {
-        stateOfGame = ( isGameOver(myTimer) ? GAME_OVER_STATE : PLAY_STATE );
-      }
-  
       if(hero.state == ON_THE_PLATFORM_STATE && (stateOfGame != GAME_OVER_STATE && stateOfGame != GAME_IS_FINISH)) {
         stateOfGame = manageCommands(hero);
         switch(stateOfGame) {
@@ -93,17 +92,36 @@ void loop() {
       interactionsWithWorld(hero, setOfObjects);
   
       paint(hero, setOfPlatforms, setOfObjects, myTimer);
+
+      if( isEndOfGame(setOfObjects[DOOR_OBJECT_ID]) ) {
+        //stateOfGame = GAME_IS_FINISH;
+        stateOfGame = SAVE_HIGH_SCORE_STATE;
+      } else {
+        stateOfGame = ( isGameOver(myTimer) ? GAME_OVER_STATE : PLAY_STATE );
+      }
       //delay(1000); // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
       /*gb.display.setColor(BLACK);
       gb.display.printf("(%d, %d)",hero.x, hero.y); // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
       delay(500);*/
       break;
     case GAME_IS_FINISH:
-      stateOfGame = manageCommandsOutOfGame(false);
+      stateOfGame = manageCommandsOutOfGame(stateOfGame);
       paintEndOfGame();
       break;
+    case SAVE_HIGH_SCORE_STATE:
+      // on arrête le chronomètre
+      pauseForTimer(myTimer);
+      myTimer.activateTimer = false;
+      
+      stateOfGame = (saveScoreIfNewHighScore(highScoreManager, myTimer.timeInSeconds) ? HIGH_SCORE_STATE : GAME_IS_FINISH);
+      break;
+    case HIGH_SCORE_STATE:
+      stateOfGame = manageCommandsOutOfGame(stateOfGame);
+      
+      paintHighScoreWindow(highScoreManager);
+      break;
     case GAME_OVER_STATE:
-      stateOfGame = manageCommandsOutOfGame(true);
+      stateOfGame = manageCommandsOutOfGame(stateOfGame);
       paintGameOverScreen();
       break;
     default:

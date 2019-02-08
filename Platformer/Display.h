@@ -1,6 +1,6 @@
 // author: chris-scientist
 // created at: 29/01/2019
-// updated at: 07/02/2019
+// updated at: 08/02/2019
 
 #ifndef PLATFORMER_DISPLAY
 #define PLATFORMER_DISPLAY
@@ -9,10 +9,12 @@
 
 #include "Constantes.h"
 #include "Timer.h"
+#include "HighScore.h"
 #include "Character.h"
 #include "Platform.h"
 #include "Object.h"
 
+char * paintInputPseudoWindow();
 void paintHomeScreen();
 void paintGameOverScreen();
 void paintEndOfGame();
