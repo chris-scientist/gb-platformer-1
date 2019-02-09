@@ -109,7 +109,7 @@ void loop() {
       break;
     case GAME_IS_FINISH:
       stateOfGame = manageCommandsOutOfGame(stateOfGame);
-      paintEndOfGame();
+      paintEndOfGame(myTimer.valueOfTime);
       break;
     case SAVE_HIGH_SCORE_STATE:
       // on arrête le chronomètre

@@ -4,7 +4,7 @@
 #ifndef PLATFORMER_LANG
 #define PLATFORMER_LANG
 
-static const char * PLAY_FR = "Jouer";
-static const char * HIGH_SCORE_FR = "Meilleurs scores";
+static const char * PLAY_FR = "Play";
+static const char * HIGH_SCORE_FR = "High score";
 
 #endif

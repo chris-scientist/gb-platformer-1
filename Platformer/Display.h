@@ -18,7 +18,7 @@
 char * paintInputPseudoWindow();
 const int paintHomeScreen();
 void paintGameOverScreen();
-void paintEndOfGame();
+void paintEndOfGame(const uint16_t * aTime);
 void paint(Character &aCharacter, Platform * aSet, Object * aSetOfObjects, Timer &aTimer);
 void paintBackground();
 void paintHero(Character &aCharacter);

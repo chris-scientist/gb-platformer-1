@@ -131,7 +131,7 @@ Image doorOpen(doorOpenData);
 char * paintInputPseudoWindow() {
   char pseudo[5] = "    ";
 
-  gb.gui.keyboard("Votre pseudo", pseudo);
+  gb.gui.keyboard("Your pseudo", pseudo);
   gb.display.clear();
 
   return pseudo;
@@ -164,22 +164,23 @@ void paintGameOverScreen() {
   gb.display.setColor(WHITE);
   gb.display.println("");
   gb.display.println("");
-  gb.display.println("(A) Rejouer");
+  gb.display.println("(A) Try again");
   gb.display.println("(B) Menu");
 }
 
-void paintEndOfGame() {
+void paintEndOfGame(const uint16_t * aTime) {
   gb.display.setFontSize(2);
   gb.display.setColor(BROWN);
   gb.display.println("");
   gb.display.println("");
-  gb.display.println("   BRAVO");
-
+  gb.display.println("TRY AGAIN");
+  paintTimer(aTime);
   gb.display.setFontSize(1);
   gb.display.setColor(WHITE);
+  
   gb.display.println("");
   gb.display.println("");
-  gb.display.println("(A) Rejouer");
+  gb.display.println("(A) Try again");
   gb.display.println("(B) Menu");
 }
 

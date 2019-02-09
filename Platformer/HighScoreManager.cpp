@@ -14,7 +14,7 @@ void initHighScoreManager(HighScoreManager &aManager) {
 void paintHighScoreWindow(const HighScoreManager& aScoreManager) {
   gb.display.setFontSize(1);
   gb.display.setColor(BROWN);
-  gb.display.println("Meilleures scores");
+  gb.display.println("High score");
   gb.display.println("");
   const uint8_t listHighScore[3] = { HIGH_SCORE_1, HIGH_SCORE_2, HIGH_SCORE_3 };
   for(int i=0 ; i<aScoreManager.nbHighScore ; i++) {
@@ -69,7 +69,7 @@ void paintHighScoreWindow(const HighScoreManager& aScoreManager) {
   gb.display.println();
   gb.display.println();
   gb.display.setColor(WHITE);
-  gb.display.println("(A) Rejouer");
+  gb.display.println("(A) Try again");
   gb.display.println("(B) Menu");
 }
 
