@@ -1,5 +1,6 @@
 // author: chris-scientist
 // created at: 08/02/2019
+// updated at: 09/02/2019
 
 #ifndef PLATFORMER_HIGH_SCORE
 #define PLATFORMER_HIGH_SCORE
@@ -9,10 +10,10 @@
 
 struct HighScore {
   char nameOfScore[5];
-  uint8_t score;
+  int32_t score;
 };
 
-void initHighScore(HighScore &aHighScore, char * aName, uint8_t aScore);
-int8_t compareTime(const HighScore &aScore, const uint8_t aTimeInSeconds);
+void initHighScore(HighScore &aHighScore, char * aName, int32_t aScore);
+int8_t compareTime(const HighScore &aScore, const int32_t aTimeInSeconds);
 
 #endif

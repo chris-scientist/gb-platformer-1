@@ -31,7 +31,7 @@ void paintObjects(Object * aSet);
 void paintObject(Object anObject);
 void paintKey(const int aX, const int aY, const int aState);
 void paintDoor(const int aX, const int aY, const int aState);
-void paintTimer(int aTimeInFrames, const int * aTime);
+void paintTimer(const uint16_t * aTime);
 
 #if DEBUG_PLATFORMER
 void paintBox(const int aX, const int aY, const int aWidth, const int aHeight, const Color aColor);

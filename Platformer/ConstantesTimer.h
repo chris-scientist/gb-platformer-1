@@ -8,5 +8,6 @@ const int DAYS_NUMBER = 0;
 const int HOURS_NUMBER = 1;
 const int MINUTES_NUMBER = 2;
 const int SECONDS_NUMBER = 3;
+const int MILLISECONDS_NUMBER = 4;
 
 #endif

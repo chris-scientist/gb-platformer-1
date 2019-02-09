@@ -1,6 +1,6 @@
 // author: chris-scientist
 // created at: 29/01/2019
-// updated at: 08/02/2019
+// updated at: 09/02/2019
 
 #include "Display.h"
 
@@ -191,7 +191,7 @@ void paint(Character &aCharacter, Platform * aSet, Object * aSetOfObjects, Timer
   paintPlatforms(aSet);
   paintObjects(aSetOfObjects);
   paintHero(aCharacter);
-  paintTimer(aTimer.timeInSeconds + aTimer.tempTime, aTimer.valueOfTime);
+  paintTimer(aTimer.valueOfTime);
 }
 
 // Dessiner le fond
@@ -401,20 +401,21 @@ void paintDoor(const int aX, const int aY, const int aState) {
 }
 
 
-void paintTimer(int aTimeInFrames, const int * aTime) {
+void paintTimer(const uint16_t * aTime) {
   gb.display.setFontSize(1);
   gb.display.setColor(WHITE);
   // afficher les minutes et secondes
-  int nbMinutes = aTime[MINUTES_NUMBER];
+  uint16_t nbMinutes = aTime[MINUTES_NUMBER];
   if(nbMinutes < 10) {
     gb.display.print("0");
   }
   gb.display.printf("%d:", nbMinutes);
-  int nbSeconds = aTime[SECONDS_NUMBER];
+  uint16_t nbSeconds = aTime[SECONDS_NUMBER];
   if(nbSeconds < 10) {
     gb.display.print("0");
   }
-  gb.display.printf("%d", nbSeconds);
+  gb.display.printf("%d:", nbSeconds);
+  gb.display.printf("%d", aTime[MILLISECONDS_NUMBER]);
 }
 
 

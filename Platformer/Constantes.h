@@ -1,6 +1,6 @@
 // author: chris-scientist
 // created at: 30/01/2019
-// updated at: 08/02/2019
+// updated at: 09/02/2019
 
 #ifndef PLATFORMER_CONSTANTES
 #define PLATFORMER_CONSTANTES
@@ -24,8 +24,8 @@ const int GROUND_TYPE = 1;
 const int PLATFORM_TYPE = 2;
 const int HILL_TYPE = 3;
 
-// Temps maximum d'une partie (en secondes)
-const int MAX_TIME_OF_GAME = 20;
+// Temps maximum d'une partie (en millisecondes)
+const int MAX_TIME_OF_GAME = 20000;
 
 // Identifiant objet
 const int KEY_OBJECT_ID = 0;

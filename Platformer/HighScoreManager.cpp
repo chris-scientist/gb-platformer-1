@@ -27,24 +27,22 @@ void paintHighScoreWindow(const HighScoreManager& aScoreManager) {
     }
     gb.display.printf("%s ", highScore.nameOfScore);
 
-    unsigned int rest = highScore.score;
+    int32_t rest = highScore.score;
 
-    const unsigned int MINUTES_IN_FRAMES = 60*1;
-    const unsigned int SECONDS_IN_FRAMES = 1;
+    const uint16_t MINUTES_IN_FRAMES = 60*1000;
+    const uint16_t SECONDS_IN_FRAMES = 1000;
   
-    int nbDays = 0;
-    int nbHours = 0;
-    int nbMinutes = 0;
-    int nbSeconds = 0;
+    uint16_t nbMinutes = 0;
+    uint16_t nbSeconds = 0;
   
     // Calculer les minutes
     if(rest >= MINUTES_IN_FRAMES) {
-      nbMinutes = (int)(rest / MINUTES_IN_FRAMES);
+      nbMinutes = (uint16_t)(rest / MINUTES_IN_FRAMES);
       rest = (rest - (nbMinutes * MINUTES_IN_FRAMES));
     }
     // Calculer les secondes
     if(rest >= SECONDS_IN_FRAMES) {
-      nbSeconds = (int)(rest / SECONDS_IN_FRAMES);
+      nbSeconds = (uint16_t)(rest / SECONDS_IN_FRAMES);
       rest = (rest - (nbSeconds * SECONDS_IN_FRAMES));
     }
 
@@ -56,7 +54,8 @@ void paintHighScoreWindow(const HighScoreManager& aScoreManager) {
     if(nbSeconds < 10) {
       gb.display.print("0");
     }
-    gb.display.printf("%d s", nbSeconds);
+    gb.display.printf("%d s ", nbSeconds);
+    gb.display.printf("%d", rest);
     gb.display.println("");
   }
 
@@ -86,7 +85,7 @@ const HighScore& getHighScore(const HighScoreManager &aManager, uint8_t anIndex)
   return aManager.highScore1;
 }
 
-bool saveScoreIfNewHighScore(HighScoreManager &aManager, const uint8_t aTimeOfPart) {
+bool saveScoreIfNewHighScore(HighScoreManager &aManager, const int32_t aTimeOfPart) {
   // Compaer le score actuel aux scores en mémoire
   const uint8_t highScoreIndex = setHighScore4Time(aManager, aTimeOfPart);
 
@@ -100,7 +99,7 @@ bool saveScoreIfNewHighScore(HighScoreManager &aManager, const uint8_t aTimeOfPa
   return haveNewHighScore;
 }
 
-const uint8_t setHighScore4Time(HighScoreManager &aManager, const uint8_t aTimeOfPart) {
+const uint8_t setHighScore4Time(HighScoreManager &aManager, const int32_t aTimeOfPart) {
   uint8_t highScoreIndex = NO_HIGH_SCORE;
 
   if(aManager.nbHighScore == 0) {
@@ -271,7 +270,7 @@ void saveAllHighScore(HighScoreManager &aManager) {
   gb.save.set(NB_HIGH_SCORE_BLOCK, aManager.nbHighScore);
 }
 
-void saveHighScore(char * aName, uint8_t aScore, uint16_t aBlockName, uint16_t aBlockScore) {
+void saveHighScore(char * aName, int32_t aScore, uint16_t aBlockName, uint16_t aBlockScore) {
   gb.save.set(aBlockName, aName);
   gb.save.set(aBlockScore, aScore);
 }

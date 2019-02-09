@@ -22,12 +22,12 @@ struct HighScoreManager {
 void initHighScoreManager(HighScoreManager &aManager);
 void paintHighScoreWindow(const HighScoreManager& aScoreManager);
 const HighScore& getHighScore(const HighScoreManager &aManager, uint8_t anIndex);
-bool saveScoreIfNewHighScore(HighScoreManager &aManager, const uint8_t aTimeOfPart);
-const uint8_t setHighScore4Time(HighScoreManager &aManager, const uint8_t aTimeOfPart);
+bool saveScoreIfNewHighScore(HighScoreManager &aManager, const int32_t aTimeOfPart);
+const uint8_t setHighScore4Time(HighScoreManager &aManager, const int32_t aTimeOfPart);
 void resetIndexNewHighScore(HighScoreManager &aManager);
 void loadAllHighScore(HighScoreManager &aManager);
 void loadHighScore(HighScore &aScore, uint16_t aBlockName, uint16_t aBlockScore);
 void saveAllHighScore(HighScoreManager &aManager);
-void saveHighScore(char * aName, uint8_t aScore, uint16_t aBlockName, uint16_t aBlockScore);
+void saveHighScore(char * aName, int32_t aScore, uint16_t aBlockName, uint16_t aBlockScore);
 
 #endif

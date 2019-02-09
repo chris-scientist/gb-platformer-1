@@ -1,28 +1,20 @@
 // author: chris-scientist
 // created at: 31/01/2019
-
-// ***********************************************************************
-// ** La durée maximum qui peut être calculé avec ce programme est de : **
-// ** 49710 jours, 6 heures, 28 minutes et 15 secondes !                **
-// **                                                                   **
-// ** Autrement dit : 136 années (de 365 jours), 70 jours, 6 heures,    **
-// ** 28 minutes et 15 secondes !                                       **
-// ***********************************************************************
+// updated at: 09/02/2019
 
 #ifndef MY_TIMER
 #define MY_TIMER
 
-#include <RTCZero.h>
+#include <Gamebuino-Meta.h>
 
 #include "ConstantesTimer.h"
 
 struct Timer {
-  unsigned int timeInSeconds; // .......... temps total écoulé
-  unsigned int tempTime; // ............... temps écoulé depuis la dernière pause
-  bool initialized; // .................... drapeau true si le timer est initialisé, false sinon
-  RTCZero rtc; // ......................... le coeur du chronomètre
-  int valueOfTime[4] = {0, 0, 0, 0}; // ... temps découpé en jours, heures, minutes et secondes
-  bool activateTimer; // ................... indique si le timer est actif
+  int32_t timeInSeconds; // ...................... temps total écoulé
+  int32_t tempTime; // ........................... temps écoulé depuis la dernière pause
+  bool initialized; // ........................... drapeau true si le timer est initialisé, false sinon
+  uint16_t valueOfTime[5] = {0, 0, 0, 0, 0}; // ... temps découpé en jours, heures, minutes, secondes et millisecondes
+  bool activateTimer; // .......................... indique si le timer est actif
 };
 
 void runTimer(Timer &aTimer);
