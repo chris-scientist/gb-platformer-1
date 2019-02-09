@@ -5,9 +5,7 @@ Cette première version du jeu de plateforme vise à appréhender le genre, c'es
 
 ## Vue d'ensemble des fonctionnalités
 
-### Déjà implémenté
-
-* Affichage de l'image de fond
+* ~~Affichage de l'image de fond~~
 * Affichage du personnage (avec animation)
 * Déplacement (gauche, droite) du personnage
 * Affichage des plateformes
@@ -16,11 +14,8 @@ Cette première version du jeu de plateforme vise à appréhender le genre, c'es
 * Interactions dans l'univers avec les objets
 * Gestion du temps
 * Gestion de la partie (avec game over)
-
-### À implémenter
-
 * Gérer le high score
-* Gestion multilingue
+
 
 ## Crédits
 
