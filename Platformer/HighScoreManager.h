@@ -1,5 +1,6 @@
 // author: chris-scientist
 // created at: 08/02/2019
+// updated at: 09/02/2019
 
 #ifndef PLATFORMER_HIGH_SCORE_MANAGER
 #define PLATFORMER_HIGH_SCORE_MANAGER

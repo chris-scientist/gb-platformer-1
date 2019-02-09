@@ -1,5 +1,6 @@
 // author: chris-scientist
 // created at: 08/02/2019
+// updated at: 09/02/2019
 
 #include "HighScoreManager.h"
 
@@ -46,11 +47,7 @@ void paintHighScoreWindow(const HighScoreManager& aScoreManager) {
       rest = (rest - (nbSeconds * SECONDS_IN_FRAMES));
     }
 
-    gb.display.cursorX = 25;
-    if(nbMinutes < 10) {
-      gb.display.print("0");
-    }
-    gb.display.printf("%d m ", nbMinutes);
+    gb.display.cursorX = 30;
     if(nbSeconds < 10) {
       gb.display.print("0");
     }
@@ -107,8 +104,8 @@ const uint8_t setHighScore4Time(HighScoreManager &aManager, const int32_t aTimeO
 
     char * pseudo = paintInputPseudoWindow();
 
-    strncpy(aManager.highScore1.nameOfScore, pseudo, 5);
-    aManager.highScore1.nameOfScore[4] = '\0';
+    strncpy(aManager.highScore1.nameOfScore, pseudo, 6);
+    aManager.highScore1.nameOfScore[5] = '\0';
     aManager.highScore1.score = aTimeOfPart;
 
     aManager.nbHighScore = 1;
@@ -121,13 +118,13 @@ const uint8_t setHighScore4Time(HighScoreManager &aManager, const int32_t aTimeO
 
       if(aManager.nbHighScore == 3) {
         // High score 3 = High score 2
-        strncpy(aManager.highScore3.nameOfScore, aManager.highScore2.nameOfScore, 5);
-        aManager.highScore3.nameOfScore[4] = '\0';
+        strncpy(aManager.highScore3.nameOfScore, aManager.highScore2.nameOfScore, 6);
+        aManager.highScore3.nameOfScore[5] = '\0';
         aManager.highScore3.score = aManager.highScore2.score;
       } else if(aManager.nbHighScore == 2) {
         // High score 3 = High score 2
-        strncpy(aManager.highScore3.nameOfScore, aManager.highScore2.nameOfScore, 5);
-        aManager.highScore3.nameOfScore[4] = '\0';
+        strncpy(aManager.highScore3.nameOfScore, aManager.highScore2.nameOfScore, 6);
+        aManager.highScore3.nameOfScore[5] = '\0';
         aManager.highScore3.score = aManager.highScore2.score;
 
         aManager.nbHighScore = 3;
@@ -136,14 +133,14 @@ const uint8_t setHighScore4Time(HighScoreManager &aManager, const int32_t aTimeO
       }
 
       // High score 2 = High score 1
-      strncpy(aManager.highScore2.nameOfScore, aManager.highScore1.nameOfScore, 5);
-      aManager.highScore2.nameOfScore[4] = '\0';
+      strncpy(aManager.highScore2.nameOfScore, aManager.highScore1.nameOfScore, 6);
+      aManager.highScore2.nameOfScore[5] = '\0';
       aManager.highScore2.score = aManager.highScore1.score;
 
       char * pseudo = paintInputPseudoWindow();
 
-      strncpy(aManager.highScore1.nameOfScore, pseudo, 5);
-      aManager.highScore1.nameOfScore[4] = '\0';
+      strncpy(aManager.highScore1.nameOfScore, pseudo, 6);
+      aManager.highScore1.nameOfScore[5] = '\0';
       aManager.highScore1.score = aTimeOfPart;
 
       highScoreIndex = HIGH_SCORE_1;
@@ -153,8 +150,8 @@ const uint8_t setHighScore4Time(HighScoreManager &aManager, const int32_t aTimeO
 
       char * pseudo = paintInputPseudoWindow();
 
-      strncpy(aManager.highScore2.nameOfScore, pseudo, 5);
-      aManager.highScore2.nameOfScore[4] = '\0';
+      strncpy(aManager.highScore2.nameOfScore, pseudo, 6);
+      aManager.highScore2.nameOfScore[5] = '\0';
       aManager.highScore2.score = aTimeOfPart;
 
       aManager.nbHighScore = 2;
@@ -170,14 +167,14 @@ const uint8_t setHighScore4Time(HighScoreManager &aManager, const int32_t aTimeO
         }
 
         // High score 3 = High score 2
-        strncpy(aManager.highScore3.nameOfScore, aManager.highScore2.nameOfScore, 5);
-        aManager.highScore3.nameOfScore[4] = '\0';
+        strncpy(aManager.highScore3.nameOfScore, aManager.highScore2.nameOfScore, 6);
+        aManager.highScore3.nameOfScore[5] = '\0';
         aManager.highScore3.score = aManager.highScore2.score;
 
         char * pseudo = paintInputPseudoWindow();
 
-        strncpy(aManager.highScore2.nameOfScore, pseudo, 5);
-        aManager.highScore2.nameOfScore[4] = '\0';
+        strncpy(aManager.highScore2.nameOfScore, pseudo, 6);
+        aManager.highScore2.nameOfScore[5] = '\0';
         aManager.highScore2.score = aTimeOfPart;
 
         highScoreIndex = HIGH_SCORE_2;
@@ -186,8 +183,8 @@ const uint8_t setHighScore4Time(HighScoreManager &aManager, const int32_t aTimeO
 
         char * pseudo = paintInputPseudoWindow();
 
-        strncpy(aManager.highScore3.nameOfScore, pseudo, 5);
-        aManager.highScore3.nameOfScore[4] = '\0';
+        strncpy(aManager.highScore3.nameOfScore, pseudo, 6);
+        aManager.highScore3.nameOfScore[5] = '\0';
         aManager.highScore3.score = aTimeOfPart;
 
         aManager.nbHighScore = 3;
@@ -199,8 +196,8 @@ const uint8_t setHighScore4Time(HighScoreManager &aManager, const int32_t aTimeO
 
           char * pseudo = paintInputPseudoWindow();
 
-          strncpy(aManager.highScore3.nameOfScore, pseudo, 5);
-          aManager.highScore3.nameOfScore[4] = '\0';
+          strncpy(aManager.highScore3.nameOfScore, pseudo, 6);
+          aManager.highScore3.nameOfScore[5] = '\0';
           aManager.highScore3.score = aTimeOfPart;
 
           highScoreIndex = HIGH_SCORE_3;
@@ -246,9 +243,9 @@ void loadAllHighScore(HighScoreManager &aManager) {
 
 void loadHighScore(HighScore &aScore, uint16_t aBlockName, uint16_t aBlockScore) {
   char temp[5];
-  gb.save.get(aBlockName, temp, 5);
-  strncpy(aScore.nameOfScore, temp, 5);
-  aScore.nameOfScore[4] = '\0';
+  gb.save.get(aBlockName, temp, 6);
+  strncpy(aScore.nameOfScore, temp, 6);
+  aScore.nameOfScore[5] = '\0';
   aScore.score = gb.save.get(aBlockScore);
 }
 

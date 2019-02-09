@@ -5,7 +5,8 @@
 #include "HighScore.h"
 
 void initHighScore(HighScore &aHighScore, char * aName, int32_t aScore) {
-  strncpy(aHighScore.nameOfScore, aName, 5);
+  strncpy(aHighScore.nameOfScore, aName, 6);
+  aHighScore.nameOfScore[5] = '\0';
   aHighScore.score = aScore;
 }
 

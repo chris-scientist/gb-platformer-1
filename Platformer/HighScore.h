@@ -9,7 +9,7 @@
 #include <cstring>
 
 struct HighScore {
-  char nameOfScore[5];
+  char nameOfScore[6];
   int32_t score;
 };
 

@@ -129,7 +129,7 @@ Image doorOpen(doorOpenData);
 // Code
 
 char * paintInputPseudoWindow() {
-  char pseudo[5] = "    ";
+  char pseudo[6] = "    ";
 
   gb.gui.keyboard("Your pseudo", pseudo);
   gb.display.clear();
@@ -405,12 +405,7 @@ void paintDoor(const int aX, const int aY, const int aState) {
 void paintTimer(const uint16_t * aTime) {
   gb.display.setFontSize(1);
   gb.display.setColor(WHITE);
-  // afficher les minutes et secondes
-  uint16_t nbMinutes = aTime[MINUTES_NUMBER];
-  if(nbMinutes < 10) {
-    gb.display.print("0");
-  }
-  gb.display.printf("%d:", nbMinutes);
+  
   uint16_t nbSeconds = aTime[SECONDS_NUMBER];
   if(nbSeconds < 10) {
     gb.display.print("0");
