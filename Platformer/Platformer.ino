@@ -96,11 +96,13 @@ void loop() {
   
       paint(hero, setOfPlatforms, setOfObjects, myTimer);
 
-      if( isEndOfGame(setOfObjects[DOOR_OBJECT_ID]) ) {
-        //stateOfGame = GAME_IS_FINISH;
-        stateOfGame = SAVE_HIGH_SCORE_STATE;
-      } else {
-        stateOfGame = ( isGameOver(myTimer) ? GAME_OVER_STATE : PLAY_STATE );
+      if( stateOfGame != HOME_STATE ) {
+        if( isEndOfGame(setOfObjects[DOOR_OBJECT_ID]) ) {
+          //stateOfGame = GAME_IS_FINISH;
+          stateOfGame = SAVE_HIGH_SCORE_STATE;
+        } else {
+          stateOfGame = ( isGameOver(myTimer) ? GAME_OVER_STATE : PLAY_STATE );
+        }
       }
       //delay(1000); // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
       /*gb.display.setColor(BLACK);
