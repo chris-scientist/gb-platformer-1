@@ -1,6 +1,6 @@
 // author: chris-scientist
 // created at: 08/02/2019
-// updated at: 09/02/2019
+// updated at: 10/02/2019
 
 #include "HighScoreManager.h"
 
@@ -52,7 +52,14 @@ void paintHighScoreWindow(const HighScoreManager& aScoreManager) {
       gb.display.print("0");
     }
     gb.display.printf("%d s ", nbSeconds);
-    gb.display.printf("%d", rest);
+    uint16_t nbMilliseconds = rest;
+    if(nbMilliseconds < 100) {
+      gb.display.print("0");
+    }
+    if(nbMilliseconds < 10) {
+      gb.display.print("0");
+    }
+    gb.display.printf("%d", nbMilliseconds);
     gb.display.println("");
   }
 

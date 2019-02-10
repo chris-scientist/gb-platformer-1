@@ -428,7 +428,14 @@ void paintTimer(const uint16_t * aTime) {
     gb.display.print("0");
   }
   gb.display.printf("%d:", nbSeconds);
-  gb.display.printf("%d", aTime[MILLISECONDS_NUMBER]);
+  uint16_t nbMilliseconds = aTime[MILLISECONDS_NUMBER];
+  if(nbMilliseconds < 100) {
+    gb.display.print("0");
+  }
+  if(nbMilliseconds < 10) {
+    gb.display.print("0");
+  }
+  gb.display.printf("%d", nbMilliseconds);
 }
 
 
