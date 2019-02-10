@@ -1,6 +1,6 @@
 // author: chris-scientist
 // created at: 30/01/2019
-// updated at: 09/02/2019
+// updated at: 10/02/2019
 
 #ifndef PLATFORMER_CONSTANTES
 #define PLATFORMER_CONSTANTES
@@ -174,7 +174,7 @@ const int ON_THE_PLATFORM_STATE = 0;
 const int FREE_FALL_STATE = 1;
 const int PUSH_FOR_JUMP_STATE = 2;
 const int JUMP_STATE = 3;
-const int CONTACT_WITH_PLATFORM_STATE = 4;
+//const int CONTACT_WITH_PLATFORM_STATE = 4;
 
 // Pour un personnage de 13 pixels de haut sur 8 pixels de large
 const int WIDTH_HERO = 6;

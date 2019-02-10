@@ -1,6 +1,6 @@
 // author: chris-scientist
 // created at: 29/01/2019
-// updated at: 07/02/2019
+// updated at: 10/02/2019
 
 #include "Character.h"
 
@@ -26,15 +26,15 @@ void initCharacter(Character &aCharacter) {
   aCharacter.state = ON_THE_PLATFORM_STATE;
   
   #if DEBUG_PLATFORMER // Mode debug actif ===============================================
-  aCharacter.x = 40;
-  aCharacter.y = 53;
+  /*aCharacter.x = 40;
+  aCharacter.y = 53;*/
   
   /*aCharacter.x = 29;
   aCharacter.y = 31;
   aCharacter.vx = HORIZONTAL_VELOCITY;
   aCharacter.state = PUSH_FOR_JUMP_STATE;*/
   
-  aCharacter.oldY = aCharacter.y;
+  //aCharacter.oldY = aCharacter.y;
   #endif
 }
 

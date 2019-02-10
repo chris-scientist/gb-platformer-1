@@ -1,6 +1,6 @@
 // author: chris-scientist
 // created at: 30/01/2019
-// updated at: 04/02/2019
+// updated at: 10/02/2019
 
 #include "Platform.h"
 
@@ -14,10 +14,10 @@ void initPlatforms(Platform * aSet) {
 
   #else // Mode debug actif ==============================================================
 
-  aSet[0] = createPlatform(4, 59, 10, GROUND_TYPE, ID_GROUND, false);
-  aSet[1] = createPlatform(4, 47, 2, PLATFORM_TYPE, ID_PLATFORM_1, true);
-  aSet[2] = createPlatform(35, 37, 2, PLATFORM_TYPE, ID_PLATFORM_2, false);
-  aSet[3] = createPlatform(68, 27, 2, PLATFORM_TYPE, ID_PLATFORM_3, false);
+  aSet[0] = createPlatform(4, 62, 10, GROUND_TYPE, ID_GROUND, false);
+  aSet[1] = createPlatform(4, 50, 2, PLATFORM_TYPE, ID_PLATFORM_1, true);
+  aSet[2] = createPlatform(35, 40, 2, PLATFORM_TYPE, ID_PLATFORM_2, false);
+  aSet[3] = createPlatform(68, 30, 2, PLATFORM_TYPE, ID_PLATFORM_3, false);
 
   #endif
 }

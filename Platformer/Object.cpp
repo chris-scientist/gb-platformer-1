@@ -1,6 +1,6 @@
 // author: chris-scientist
 // created at: 02/02/2019
-// updated at: 03/02/2019
+// updated at: 10/02/2019
 
 #include "Object.h"
 
@@ -12,8 +12,8 @@ void initObjects(Object * aSet) {
 
   #else // Mode debug actif ==============================================================
 
-  aSet[KEY_OBJECT_ID] = createObject(75, 23, KEY_OBJECT, KEY_ON_THE_PLATFORM);
-  aSet[DOOR_OBJECT_ID] = createObject(72, 51, DOOR_OBJECT, DOOR_CLOSED);
+  aSet[KEY_OBJECT_ID] = createObject(75, 26, KEY_OBJECT, KEY_ON_THE_PLATFORM);
+  aSet[DOOR_OBJECT_ID] = createObject(72, 54, DOOR_OBJECT, DOOR_CLOSED);
 
   #endif
 }
