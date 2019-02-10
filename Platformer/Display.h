@@ -1,6 +1,6 @@
 // author: chris-scientist
 // created at: 29/01/2019
-// updated at: 08/02/2019
+// updated at: 10/02/2019
 
 #ifndef PLATFORMER_DISPLAY
 #define PLATFORMER_DISPLAY
@@ -18,6 +18,7 @@
 char * paintInputPseudoWindow();
 const int paintHomeScreen();
 void paintGameOverScreen();
+void paintPause();
 void paintEndOfGame(const uint16_t * aTime);
 void paint(Character &aCharacter, Platform * aSet, Object * aSetOfObjects, Timer &aTimer);
 void paintBackground();

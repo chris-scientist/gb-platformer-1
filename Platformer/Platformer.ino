@@ -74,17 +74,17 @@ void loop() {
     case PLAY_STATE:
       // Partie en cours...
 
-      runTimer(myTimer);
-
       if(hero.state == ON_THE_PLATFORM_STATE && (stateOfGame != GAME_OVER_STATE && stateOfGame != GAME_IS_FINISH)) {
         stateOfGame = manageCommands(hero);
         switch(stateOfGame) {
-          case HOME_STATE:
+          case PAUSE_STATE:
             myTimer.activateTimer = false;
             pauseForTimer(myTimer);
             break;
         }
       }
+
+      runTimer(myTimer);
       
       if(hero.state != JUMP_STATE && hero.state != PUSH_FOR_JUMP_STATE) {
         gravity(hero, setOfPlatforms);
@@ -96,7 +96,7 @@ void loop() {
   
       paint(hero, setOfPlatforms, setOfObjects, myTimer);
 
-      if( stateOfGame != HOME_STATE ) {
+      if( stateOfGame != PAUSE_STATE ) {
         if( isEndOfGame(setOfObjects[DOOR_OBJECT_ID]) ) {
           //stateOfGame = GAME_IS_FINISH;
           stateOfGame = SAVE_HIGH_SCORE_STATE;
@@ -108,6 +108,14 @@ void loop() {
       /*gb.display.setColor(BLACK);
       gb.display.printf("(%d, %d)",hero.x, hero.y); // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
       delay(500);*/
+      break;
+    case PAUSE_STATE:
+      stateOfGame = manageCommandsForPause();
+      paintPause();
+      break;
+    case GO_BACK_GAME_STATE:
+      myTimer.activateTimer = true;
+      stateOfGame = PLAY_STATE;
       break;
     case GAME_IS_FINISH:
       stateOfGame = manageCommandsOutOfGame(stateOfGame);

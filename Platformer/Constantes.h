@@ -17,6 +17,8 @@ const int GAME_IS_FINISH = 3;
 const int GAME_OVER_STATE = 4;
 const int SAVE_HIGH_SCORE_STATE = 5;
 const int HIGH_SCORE_STATE = 6;
+const int PAUSE_STATE = 7;
+const int GO_BACK_GAME_STATE = 8;
 
 // Type de plateforme
 const int NO_PLATFORM_TYPE = 0;

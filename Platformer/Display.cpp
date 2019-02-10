@@ -1,6 +1,6 @@
 // author: chris-scientist
 // created at: 29/01/2019
-// updated at: 09/02/2019
+// updated at: 10/02/2019
 
 #include "Display.h"
 
@@ -181,6 +181,23 @@ void paintEndOfGame(const uint16_t * aTime) {
   gb.display.println("");
   gb.display.println("");
   gb.display.println("(A) Try again");
+  gb.display.println("(B) Menu");
+}
+
+void paintPause() {
+  gb.display.setFontSize(1);
+  gb.display.setColor(BROWN);
+  gb.display.println("");
+  gb.display.println("");
+  gb.display.println("");
+  gb.display.println("");
+  gb.display.println("Do you want ?");
+
+  gb.display.setColor(WHITE);
+  gb.display.println("");
+  gb.display.println("");
+  gb.display.println("");
+  gb.display.println("(A) Go to game");
   gb.display.println("(B) Menu");
 }
 

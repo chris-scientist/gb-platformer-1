@@ -1,14 +1,23 @@
 // author: chris-scientist
 // created at: 29/01/2019
-// updated at: 03/02/2019
+// updated at: 10/02/2019
 
 #include "Commands.h"
 
-const int manageCommandsForHome() {
+/*const int manageCommandsForHome() {
   if(gb.buttons.pressed(BUTTON_A)) {
     return LAUNCH_PLAY_STATE;
   }
   return HOME_STATE;
+}*/
+
+const int manageCommandsForPause() {
+  if(gb.buttons.pressed(BUTTON_A)) {
+    return GO_BACK_GAME_STATE;
+  } else if(gb.buttons.pressed(BUTTON_B)) {
+    return HOME_STATE;
+  }
+  return PAUSE_STATE;
 }
 
 const int manageCommandsOutOfGame(const int aState) {
@@ -45,7 +54,7 @@ const int manageCommands(Character &aCharacter) {
   }
 
   if(gb.buttons.pressed(BUTTON_MENU)) {
-    return HOME_STATE;
+    return PAUSE_STATE;
   }
 
   if(isMove) {
