@@ -79,7 +79,6 @@ void loop() {
         switch(stateOfGame) {
           case PAUSE_STATE:
             myTimer.activateTimer = false;
-            pauseForTimer(myTimer);
             break;
         }
       }
