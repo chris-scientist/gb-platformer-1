@@ -12,7 +12,6 @@
 struct Timer {
   int32_t timeInSeconds; // ...................... temps total écoulé
   int32_t tempTime; // ........................... temps écoulé depuis la dernière pause
-  bool initialized; // ........................... drapeau true si le timer est initialisé, false sinon
   uint16_t valueOfTime[5] = {0, 0, 0, 0, 0}; // ... temps découpé en jours, heures, minutes, secondes et millisecondes
   bool activateTimer; // .......................... indique si le timer est actif
 };
@@ -20,7 +19,6 @@ struct Timer {
 void runTimer(Timer &aTimer);
 void createTimer(Timer &aTimer);
 void resetTimer(Timer &aTimer);
-void initTimer(Timer &aTimer);
 void pauseForTimer(Timer &aTimer);
 void computeTime(Timer &aTimer);
 void incrementTime(Timer &aTimer);

@@ -7,9 +7,6 @@
 // Gestion du chronomètre
 void runTimer(Timer &aTimer) {
   if(aTimer.activateTimer) {
-    if(aTimer.tempTime == 0) {
-      initTimer(aTimer);
-    }
     incrementTime(aTimer);
     computeTime(aTimer);
   } else {
@@ -26,14 +23,6 @@ void createTimer(Timer &aTimer) {
 void resetTimer(Timer &aTimer) {
   aTimer.timeInSeconds = 0;
   aTimer.tempTime = 0;
-  aTimer.initialized = false;
-}
-
-// Initialiser le timer
-void initTimer(Timer &aTimer) {
-  if(! aTimer.initialized) {
-    aTimer.initialized = true;
-  }
 }
 
 // Mettre en pause le timer
@@ -41,7 +30,6 @@ void pauseForTimer(Timer &aTimer) {
   if(aTimer.tempTime != 0) {
     aTimer.timeInSeconds += aTimer.tempTime;
     aTimer.tempTime = 0;
-    aTimer.initialized = false;
   }
 }
 
