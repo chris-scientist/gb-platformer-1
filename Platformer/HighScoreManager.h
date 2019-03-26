@@ -23,6 +23,9 @@ struct HighScoreManager {
 void initHighScoreManager(HighScoreManager &aManager);
 void paintHighScoreWindow(const HighScoreManager& aScoreManager);
 const HighScore& getHighScore(const HighScoreManager &aManager, uint8_t anIndex);
+void swapHighScore(HighScore &aHighScore, const HighScore & aNewHighScore);
+const HighScore createNewHighScore(const uint32_t aTimeOfPart);
+const bool isBetterOrEqualToScore(int aValue);
 bool saveScoreIfNewHighScore(HighScoreManager &aManager, const int32_t aTimeOfPart);
 const uint8_t setHighScore4Time(HighScoreManager &aManager, const int32_t aTimeOfPart);
 void resetIndexNewHighScore(HighScoreManager &aManager);

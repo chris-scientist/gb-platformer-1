@@ -103,115 +103,101 @@ bool saveScoreIfNewHighScore(HighScoreManager &aManager, const int32_t aTimeOfPa
   return haveNewHighScore;
 }
 
+void swapHighScore(HighScore &aHighScore, const HighScore & aNewHighScore) {
+  strncpy(aHighScore.nameOfScore, aNewHighScore.nameOfScore, 6);
+  aHighScore.nameOfScore[5] = '\0';
+  aHighScore.score = aNewHighScore.score;
+}
+
+const HighScore createNewHighScore(const uint32_t aTimeOfPart) {
+  char * pseudo = paintInputPseudoWindow();
+
+  HighScore newHighScore;
+  strncpy(newHighScore.nameOfScore, pseudo, 6);
+  newHighScore.nameOfScore[5] = '\0';
+  newHighScore.score = aTimeOfPart;
+
+  return newHighScore;
+}
+
+const bool isBetterOrEqualToScore(int aValue) {
+  return (aValue == 0 || aValue == 1);
+}
+
 const uint8_t setHighScore4Time(HighScoreManager &aManager, const int32_t aTimeOfPart) {
   uint8_t highScoreIndex = NO_HIGH_SCORE;
 
-  if(aManager.nbHighScore == 0) {
-    // S'il n'y a pas de meilleur score
-
-    char * pseudo = paintInputPseudoWindow();
-
-    strncpy(aManager.highScore1.nameOfScore, pseudo, 6);
-    aManager.highScore1.nameOfScore[5] = '\0';
-    aManager.highScore1.score = aTimeOfPart;
-
-    aManager.nbHighScore = 1;
-    highScoreIndex = HIGH_SCORE_1;
+  if( aManager.nbHighScore > 0) {
     
-  } else {
     const int cmpTime1 = compareTime(aManager.highScore1, aTimeOfPart);
-    if(cmpTime1 == 0 || cmpTime1 == 1) {
-      // Si le score est égale ou meilleur que le score 1
+    if( isBetterOrEqualToScore(cmpTime1) ) {
+      HighScore newHighScore;
+      switch(aManager.nbHighScore) {
+        case 3:
+        case 2:
+          swapHighScore(aManager.highScore3, aManager.highScore2);
+          swapHighScore(aManager.highScore2, aManager.highScore1);
 
-      if(aManager.nbHighScore == 3) {
-        // High score 3 = High score 2
-        strncpy(aManager.highScore3.nameOfScore, aManager.highScore2.nameOfScore, 6);
-        aManager.highScore3.nameOfScore[5] = '\0';
-        aManager.highScore3.score = aManager.highScore2.score;
-      } else if(aManager.nbHighScore == 2) {
-        // High score 3 = High score 2
-        strncpy(aManager.highScore3.nameOfScore, aManager.highScore2.nameOfScore, 6);
-        aManager.highScore3.nameOfScore[5] = '\0';
-        aManager.highScore3.score = aManager.highScore2.score;
+          newHighScore = createNewHighScore(aTimeOfPart);
 
-        aManager.nbHighScore = 3;
-      } else {
-        aManager.nbHighScore = 2;
+          swapHighScore(aManager.highScore1, newHighScore);
+
+          if(aManager.nbHighScore == 2) {
+            aManager.nbHighScore = 3;
+          }
+          
+          break;
+        case 1:
+          swapHighScore(aManager.highScore2, aManager.highScore1);
+
+          newHighScore = createNewHighScore(aTimeOfPart);
+
+          swapHighScore(aManager.highScore1, newHighScore);
+          aManager.nbHighScore = 2;
+          break;
       }
-
-      // High score 2 = High score 1
-      strncpy(aManager.highScore2.nameOfScore, aManager.highScore1.nameOfScore, 6);
-      aManager.highScore2.nameOfScore[5] = '\0';
-      aManager.highScore2.score = aManager.highScore1.score;
-
-      char * pseudo = paintInputPseudoWindow();
-
-      strncpy(aManager.highScore1.nameOfScore, pseudo, 6);
-      aManager.highScore1.nameOfScore[5] = '\0';
-      aManager.highScore1.score = aTimeOfPart;
 
       highScoreIndex = HIGH_SCORE_1;
-      
-    } else if(aManager.nbHighScore == 1) {
-      // S'il n'y a pas de meilleur score 2
+    } else if( ( aManager.nbHighScore == 3 || aManager.nbHighScore == 2 ) &&
+      isBetterOrEqualToScore( compareTime(aManager.highScore2, aTimeOfPart) )
+    ) {
+      swapHighScore(aManager.highScore3, aManager.highScore2);
 
-      char * pseudo = paintInputPseudoWindow();
+      HighScore newHighScore;
+      newHighScore = createNewHighScore(aTimeOfPart);
 
-      strncpy(aManager.highScore2.nameOfScore, pseudo, 6);
-      aManager.highScore2.nameOfScore[5] = '\0';
-      aManager.highScore2.score = aTimeOfPart;
+      swapHighScore(aManager.highScore2, newHighScore);
+      if(aManager.nbHighScore == 2) {
+        aManager.nbHighScore = 3;
+      }
+      highScoreIndex = HIGH_SCORE_2;
+    } else if( ( aManager.nbHighScore == 3 && isBetterOrEqualToScore( compareTime(aManager.highScore3, aTimeOfPart) ) ) ||
+      aManager.nbHighScore == 2
+    ) {
+      HighScore newHighScore;
+      newHighScore = createNewHighScore(aTimeOfPart);
 
+      swapHighScore(aManager.highScore3, newHighScore);
+      if( aManager.nbHighScore == 2) {
+        aManager.nbHighScore = 3;
+      }
+      highScoreIndex = HIGH_SCORE_3;
+    } else if( aManager.nbHighScore == 1 ) {
+      HighScore newHighScore;
+      newHighScore = createNewHighScore(aTimeOfPart);
+
+      swapHighScore(aManager.highScore2, newHighScore);
       aManager.nbHighScore = 2;
       highScoreIndex = HIGH_SCORE_2;
-      
-    } else {
-      const int cmpTime2 = compareTime(aManager.highScore2, aTimeOfPart);
-      if(cmpTime2 == 0 || cmpTime2 == 1) {
-        // Si le score est égale ou meilleur que le score 2
-
-        if(aManager.nbHighScore == 2) {
-          aManager.nbHighScore = 3;
-        }
-
-        // High score 3 = High score 2
-        strncpy(aManager.highScore3.nameOfScore, aManager.highScore2.nameOfScore, 6);
-        aManager.highScore3.nameOfScore[5] = '\0';
-        aManager.highScore3.score = aManager.highScore2.score;
-
-        char * pseudo = paintInputPseudoWindow();
-
-        strncpy(aManager.highScore2.nameOfScore, pseudo, 6);
-        aManager.highScore2.nameOfScore[5] = '\0';
-        aManager.highScore2.score = aTimeOfPart;
-
-        highScoreIndex = HIGH_SCORE_2;
-      } else if(aManager.nbHighScore == 2) {
-        // S'il n'y a pas de meilleur score 3
-
-        char * pseudo = paintInputPseudoWindow();
-
-        strncpy(aManager.highScore3.nameOfScore, pseudo, 6);
-        aManager.highScore3.nameOfScore[5] = '\0';
-        aManager.highScore3.score = aTimeOfPart;
-
-        aManager.nbHighScore = 3;
-        highScoreIndex = HIGH_SCORE_3;
-      } else {
-        const int cmpTime3 = compareTime(aManager.highScore3, aTimeOfPart);
-        if(cmpTime3 == 0 || cmpTime3 == 1) {
-          // Si le score est égale ou meilleur que le score 3
-
-          char * pseudo = paintInputPseudoWindow();
-
-          strncpy(aManager.highScore3.nameOfScore, pseudo, 6);
-          aManager.highScore3.nameOfScore[5] = '\0';
-          aManager.highScore3.score = aTimeOfPart;
-
-          highScoreIndex = HIGH_SCORE_3;
-        }
-      }
     }
     
+  } else {
+    HighScore newHighScore;
+    newHighScore = createNewHighScore(aTimeOfPart);
+
+    swapHighScore(aManager.highScore1, newHighScore);
+    aManager.nbHighScore = 1;
+    highScoreIndex = HIGH_SCORE_1;
   }
   
   return highScoreIndex;
